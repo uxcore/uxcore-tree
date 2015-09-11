@@ -1,0 +1,140 @@
+/**
+ * Tree Component Style for uxcore
+ * @author
+ *
+ * Copyright 2014-2015, Uxcore Team, Alinw.
+ * All rights reserved.
+ */
+/*@pager-bg:                             @pagination-bg;
+@pager-border:                         @pagination-border;
+@pager-border-radius:                  15px;
+
+@pager-hover-bg:                       @pagination-hover-bg;
+
+@pager-active-bg:                      @pagination-active-bg;
+@pager-active-color:                   @pagination-active-color;*/
+.kuma-tree {
+  margin: 0;
+  padding: 5px;
+}
+.kuma-tree li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  white-space: nowrap;
+  outline: 0;
+}
+.kuma-tree li ul {
+  margin: 0;
+  padding: 0 0 0 18px;
+}
+.kuma-tree li ul.kuma-tree-line {
+  background: url("https://t.alipayobjects.com/images/T13BtfXl0mXXXXXXXX.gif") 0 0 repeat-y;
+}
+.kuma-tree li a {
+  display: inline-block;
+  padding: 1px 3px 0 0;
+  margin: 0;
+  cursor: pointer;
+  height: 17px;
+  text-decoration: none;
+  vertical-align: top;
+}
+.kuma-tree li span.kuma-tree-switcher-noop,
+.kuma-tree li span.kuma-tree-switcher,
+.kuma-tree li span.kuma-tree-checkbox,
+.kuma-tree li span.kuma-tree-iconEle {
+  line-height: 16px;
+  margin-right: 2px;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 0 none;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-image: url("https://t.alipayobjects.com/images/T1.ANfXhXtXXXXXXXX.png");
+}
+.kuma-tree li span.kuma-tree-switcher-noop {
+  background-image: none;
+}
+.kuma-tree li span.kuma-tree-switcher-disabled {
+  background: #fff;
+  position: relative;
+}
+.kuma-tree li span.kuma-tree-switcher-disabled:after {
+  content: '-';
+  position: absolute;
+  top: 8px;
+  left: 6px;
+  color: gray;
+}
+.kuma-tree li span.kuma-tree-switcher.kuma-tree-roots_open {
+  background-position: -92px 0;
+}
+.kuma-tree li span.kuma-tree-switcher.kuma-tree-roots_close {
+  background-position: -74px 0;
+}
+.kuma-tree li span.kuma-tree-switcher.kuma-tree-center_open {
+  background-position: -92px -18px;
+}
+.kuma-tree li span.kuma-tree-switcher.kuma-tree-center_close {
+  background-position: -74px -18px;
+}
+.kuma-tree li span.kuma-tree-switcher.kuma-tree-bottom_open {
+  background-position: -92px -36px;
+}
+.kuma-tree li span.kuma-tree-switcher.kuma-tree-bottom_close {
+  background-position: -74px -36px;
+}
+.kuma-tree li span.kuma-tree-switcher.kuma-tree-noline_open {
+  background-position: -92px -72px;
+}
+.kuma-tree li span.kuma-tree-switcher.kuma-tree-noline_close {
+  background-position: -74px -72px;
+}
+.kuma-tree li span.kuma-tree-checkbox {
+  width: 13px;
+  height: 13px;
+  margin: 0 3px;
+  background-position: 0 0;
+}
+.kuma-tree li span.kuma-tree-checkbox.kuma-tree-checkbox-checked {
+  background-position: -14px 0;
+}
+.kuma-tree li span.kuma-tree-checkbox.kuma-tree-checkbox-indeterminate {
+  background-position: -14px -28px;
+}
+.kuma-tree li span.kuma-tree-checkbox-disabled {
+  background-position: 0 -28px !important;
+}
+.kuma-tree-child-tree {
+  display: none;
+}
+.kuma-tree-child-tree-open {
+  display: block;
+}
+.kuma-tree-treenode-disabled > span,
+.kuma-tree-treenode-disabled > a {
+  color: gray;
+}
+.kuma-tree-selected {
+  background-color: #ffe6b0;
+  border: 1px #ffb951 solid;
+  opacity: 0.8;
+}
+.kuma-tree-icon__open {
+  margin-right: 2px;
+  background-position: -110px -16px;
+  vertical-align: top;
+}
+.kuma-tree-icon__close {
+  margin-right: 2px;
+  background-position: -110px 0;
+  vertical-align: top;
+}
+
+/*# sourceMappingURL=Tree.css.map */
