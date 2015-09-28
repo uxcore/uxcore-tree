@@ -52,8 +52,7 @@ http://uxcore.github.io/uxcore-tree/
 |----------|----------------|----------|--------------|
 |className | additional css class of root dom node | String | '' |
 |prefixCls | prefix class | String | 'kuma-tree' |
-|showLine | whether show line | bool | true |
-|showIcon | whether show icon | bool | true |
+|showLine | whether show line | bool | false |
 |multiple | whether multiple select | bool | false |
 |checkable | whether support checked | bool/React Node | false |
 |defaultExpandAll | expand all treeNodes | bool | false |

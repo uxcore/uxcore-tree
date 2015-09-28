@@ -7,6 +7,7 @@
  */
 
 @import "../node_modules/uxcore-kuma/src/less/variables";
+@tree-assets-img: 'https://aliwork.alicdn.com/tps/i2/TB15Y7sJFXXXXbYXpXXxPKU.FXX-130-87.png';
 
 @treePrefixCls: kuma-tree;
 .@{treePrefixCls} {
@@ -18,6 +19,7 @@
     list-style: none;
     white-space: nowrap;
     outline: 0;
+    line-height: 18px;
     ul {
       margin: 0;
       padding: 0 0 0 18px;
@@ -27,22 +29,21 @@
     }
     a {
       display: inline-block;
-      padding: 1px 3px 0 0;
       margin: 0;
       cursor: pointer;
-      height: 17px;
+      height: 18px;
       text-decoration: none;
-      vertical-align: top;
+      line-height: 18px;
+      vertical-align: middle;
     }
     span {
       &.@{treePrefixCls}-switcher-noop,
       &.@{treePrefixCls}-switcher,
       &.@{treePrefixCls}-checkbox,
       &.@{treePrefixCls}-iconEle {
-        line-height: 16px;
         margin-right: 2px;
-        width: 16px;
-        height: 16px;
+        width: 18px;
+        height: 18px;
         display: inline-block;
         vertical-align: middle;
         border: 0 none;
@@ -51,7 +52,7 @@
         background-color: transparent;
         background-repeat: no-repeat;
         background-attachment: scroll;
-        background-image: url("https://t.alipayobjects.com/images/T1.ANfXhXtXXXXXXXX.png");
+        background-image: url(@tree-assets-img);
       }
       &.@{treePrefixCls}-switcher-noop {
         background-image: none;
@@ -69,40 +70,40 @@
           }
         }
         &.@{treePrefixCls}-roots_open {
-          background-position: -92px 0;
+          background-position: -112px 0px;
         }
         &.@{treePrefixCls}-roots_close {
-          background-position: -74px 0;
+          background-position: -94px 0px;
         }
         &.@{treePrefixCls}-center_open {
-          background-position: -92px -18px;
+          background-position: -112px -18px;
         }
         &.@{treePrefixCls}-center_close {
-          background-position: -74px -18px;
+          background-position: -94px -18px;
         }
         &.@{treePrefixCls}-bottom_open {
-          background-position: -92px -36px;
+          background-position: -112px -36px;
         }
         &.@{treePrefixCls}-bottom_close {
-          background-position: -74px -36px;
+          background-position: -94px -36px;
         }
         &.@{treePrefixCls}-noline_open {
-          background-position: -92px -72px;
+          background-position: -115px -72px;
         }
         &.@{treePrefixCls}-noline_close {
-          background-position: -74px -72px;
+          background-position: -97px -72px;
         }
       }
       &.@{treePrefixCls}-checkbox {
-        width: 13px;
-        height: 13px;
+        width: 14px;
+        height: 14px;
         margin: 0 3px;
         background-position: 0 0;
         &.@{treePrefixCls}-checkbox-checked {
-          background-position: -14px 0;
+          background-position: -15px 0;
         }
         &.@{treePrefixCls}-checkbox-indeterminate {
-          background-position: -14px -28px;
+          background-position: -15px -28px;
         }
         &-disabled {
           background-position: 0 -28px!important;
@@ -122,19 +123,7 @@
       color: gray;
     }
   }
-  &-selected {
-    background-color: #ffe6b0;
-    border: 1px #ffb951 solid;
-    opacity: 0.8;
-  }
-  &-icon__open {
-    margin-right: 2px;
-    background-position: -110px -16px;
-    vertical-align: top;
-  }
-  &-icon__close {
-    margin-right: 2px;
-    background-position: -110px 0;
-    vertical-align: top;
+  &-node-selected {
+    background-color: #f2f2f2;
   }
 }
