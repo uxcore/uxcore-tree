@@ -47,7 +47,7 @@ export class CheckedDemo extends React.Component {
           <TreeNode key="p12" title="leaf"/>
         </Tree>
       </div>
-      <button onClick={this.handleClick}>check sth</button>
+      <button className="kuma-button kuma-button-sm" onClick={this.handleClick}>check sth</button>
     </div>
   }
 }
