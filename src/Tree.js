@@ -9,19 +9,9 @@ export default class Tree extends RcTree {
         super(props);
     }
 }
-Tree.displayName = 'uxcore-tree';
+Tree.displayName = 'Tree';
 Tree.propTypes = RcTree.propTypes;
 assign(RcTree.defaultProps, {
-  prefixCls: 'kuma-tree',
-  showIcon: false
-});
-
-export class TreeNode extends RcTreeNode {
-    constructor(props){
-        super(props);
-    }
-}
-TreeNode.displayName = 'uxcore-treenode';
-TreeNode.propTypes = RcTreeNode.propTypes;
-assign(RcTreeNode.defaultProps, {
+    prefixCls: 'kuma-tree',
+    showIcon: false
 });

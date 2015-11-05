@@ -7,6 +7,6 @@
  */
 
  import {CheckedDemo, ExpandDemo, SimpleDemo} from './TreeDemo';
- ReactDOM.render(<CheckedDemo/>, document.getElementById('UXCoreDemo'));
+ ReactDOM.render(<CheckedDemo/>, document.getElementById('UXCoreDemo'));T
  ReactDOM.render(ExpandDemo, document.getElementById('UXCoreDemo1'));
  ReactDOM.render(SimpleDemo, document.getElementById('UXCoreDemo2'));
