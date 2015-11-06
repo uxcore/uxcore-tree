@@ -13,7 +13,7 @@ function handleCheck(info) {
 export class CheckedDemo extends React.Component {
   constructor(props) {
     super(props);
-    ['handleClick'].forEach((m)=> {
+    ['handleClick', 'handleCheck', 'handleSelect'].forEach((m)=> {
       this[m] = this[m].bind(this);
     });
     this.state = {
@@ -27,13 +27,27 @@ export class CheckedDemo extends React.Component {
       selectedKeys: ['p21', 'p11']
     });
   }
+  handleCheck(info) {
+    console.log('check: ', info);
+    this.setState({
+      checkedKeys: ['p21'],
+      selectedKeys: ['p1', 'p21']
+    });
+  }
+  handleSelect(info) {
+    console.log('selected: ', info);
+    this.setState({
+      checkedKeys: ['p21'],
+      selectedKeys: ['p21']
+    });
+  }
   render() {
     return <div>
       <div>
         <h2>checked</h2>
         <Tree showLine={true} defaultExpandAll={true} checkable={true}
               onCheck={handleCheck} defaultCheckedKeys={['p1', 'p22']} checkedKeys={this.state.checkedKeys}
-              defaultSelectedKeys={['p11']} selectedKeys={this.state.selectedKeys} multiple>
+              onSelect={this.handleSelect} defaultSelectedKeys={['p11']} selectedKeys={this.state.selectedKeys} multiple>
           <TreeNode title="parent 1" key="p1">
             <TreeNode key="p10" title="leaf"/>
             <TreeNode title="parent 1-1" key="p11">

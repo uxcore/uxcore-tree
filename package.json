@@ -40,7 +40,7 @@
   "dependencies": {
     "classnames": "^2.1.2",
     "object-assign": "^2.0.0",
-    "rc-tree": "~0.16.1",
+    "rc-tree": "^0.18.1",
     "rc-util": "~2.0.3"
   },
   "author": "",
