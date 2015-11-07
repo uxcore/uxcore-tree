@@ -2,6 +2,9 @@
 
 ---
 
+## 0.1.7
+`FIXED` error in ie
+
 ## 0.1.6
 `UPGRADE` update to rc-tree@0.18.1
 
