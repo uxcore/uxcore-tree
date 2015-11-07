@@ -2,6 +2,8 @@ import React from 'react';
 import Tree from '../src/index';
 let TreeNode = Tree.TreeNode;
 
+console.log(Tree, TreeNode)
+
 function handleSelect(e) {
   console.log(e.event, e.node, 'selected:', e.selected);
 }
@@ -46,7 +48,7 @@ export class CheckedDemo extends React.Component {
       <div>
         <h2>checked</h2>
         <Tree showLine={true} defaultExpandAll={true} checkable={true}
-              onCheck={handleCheck} defaultCheckedKeys={['p1', 'p22']} checkedKeys={this.state.checkedKeys}
+              onCheck={this.handleCheck} defaultCheckedKeys={['p1', 'p22']} checkedKeys={this.state.checkedKeys}
               onSelect={this.handleSelect} defaultSelectedKeys={['p11']} selectedKeys={this.state.selectedKeys} multiple>
           <TreeNode title="parent 1" key="p1">
             <TreeNode key="p10" title="leaf"/>
