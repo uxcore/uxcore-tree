@@ -2,6 +2,9 @@
 
 ---
 
+## 0.1.8
+`UPGRADE` upgrade to rc-tree@0.19.x
+
 ## 0.1.7
 `FIXED` error in ie
 

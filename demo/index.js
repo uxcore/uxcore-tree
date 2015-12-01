@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 
- import {CheckedDemo, ExpandDemo, SimpleDemo} from './TreeDemo';
+ import {CheckedDemo, SelectableDemo, BasicDemo} from './TreeDemo';
  ReactDOM.render(<CheckedDemo/>, document.getElementById('UXCoreDemo'));
- ReactDOM.render(ExpandDemo, document.getElementById('UXCoreDemo1'));
- ReactDOM.render(SimpleDemo, document.getElementById('UXCoreDemo2'));
+ ReactDOM.render(SelectableDemo, document.getElementById('UXCoreDemo1'));
+ ReactDOM.render(BasicDemo, document.getElementById('UXCoreDemo2'));

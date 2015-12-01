@@ -2,8 +2,6 @@ import React from 'react';
 import Tree from '../src/index';
 let TreeNode = Tree.TreeNode;
 
-console.log(Tree, TreeNode)
-
 function handleSelect(e) {
   console.log(e.event, e.node, 'selected:', e.selected);
 }
@@ -54,7 +52,7 @@ export class CheckedDemo extends React.Component {
             <TreeNode key="p10" title="leaf"/>
             <TreeNode title="parent 1-1" key="p11">
               <TreeNode title="parent 2-1" key="p21">
-                <TreeNode>test</TreeNode>
+                <TreeNode title="test" />
                 <TreeNode title={<span>sss</span>}/>
               </TreeNode>
               <TreeNode key="p22" title="leaf"/>
@@ -68,8 +66,8 @@ export class CheckedDemo extends React.Component {
   }
 }
 
-export let ExpandDemo = (<div>
-    <h2>expanded</h2>
+export let BasicDemo = (<div>
+    <h2>Basic</h2>
     <Tree defaultExpandAll={false}>
       <TreeNode title="parent 1" key="p1">
         <TreeNode key="p10" title="leaf"/>
@@ -84,18 +82,18 @@ export let ExpandDemo = (<div>
     </Tree>
 </div>);
 
-export let SimpleDemo = (<div>
-    <h2>simple</h2>
-    <Tree className="myCls" onSelect={handleSelect} defaultSelectedKeys={['0-1', '0-1-1']} multiple={true}
-      defaultExpandAll={true} showLine={true}>
-      <TreeNode title="parent 1" key="0-1">
-        <TreeNode title="parent 1-0" key="0-1-1">
-          <TreeNode title="leaf" />
-          <TreeNode title="leaf" />
+export let SelectableDemo = (<div>
+    <h2>可选择</h2>
+    <Tree defaultExpandAll checkable onCheck={handleCheck}>
+        <TreeNode title="parent 1">
+            <TreeNode title="leaf" />
+            <TreeNode title="parent 1-1">
+                <TreeNode title="parent 2-1">
+                    <TreeNode title="leaf" />
+                    <TreeNode title="leaf" />
+                </TreeNode>
+                <TreeNode title="leaf" />
+            </TreeNode>
         </TreeNode>
-        <TreeNode title="parent 1-1">
-          <TreeNode title="leaf" />
-        </TreeNode>
-      </TreeNode>
     </Tree>
 </div>);
