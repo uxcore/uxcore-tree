@@ -2,6 +2,9 @@
 
 ---
 
+## 0.1.9
+`CHANGED` remove dependency rc-util
+
 ## 0.1.8
 `UPGRADE` upgrade to rc-tree@0.19.x
 

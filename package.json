@@ -1,6 +1,6 @@
 {
   "name": "uxcore-tree",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "uxcore-tree ui component for react",
   "main": "src/index.js",
   "scripts": {
@@ -40,8 +40,7 @@
   "dependencies": {
     "classnames": "^2.1.2",
     "object-assign": "^2.0.0",
-    "rc-tree": "^0.19.1",
-    "rc-util": "~2.0.3"
+    "rc-tree": "^0.19.1"
   },
   "author": "",
   "contributors": [],
