@@ -2,6 +2,9 @@
 
 ---
 
+## 0.2.0
+`CHANGED` update rc-tree to ~1.1.0
+
 ## 0.1.11
 `CHANGED` update scaffold
 
