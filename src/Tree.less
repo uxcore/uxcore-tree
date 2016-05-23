@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 
-@tree-assets-img: 'https://aliwork.alicdn.com/tps/i2/TB15Y7sJFXXXXbYXpXXxPKU.FXX-130-87.png';
+@tree-assets-img: 'https://aliwork.alicdn.com/tps/TB168PeJVXXXXa1XFXXXXXXXXXX-130-87.png';
 
 @treePrefixCls: kuma-tree;
 .@{treePrefixCls} {
@@ -88,25 +88,31 @@
           background-position: -94px -36px;
         }
         &.@{treePrefixCls}-noline_open {
-          background-position: -115px -72px;
+          // background-position: -115px -72px;
+          background: url('https://img.alicdn.com/tps/TB1IvveJVXXXXbcXFXXXXXXXXXX-14-10.svg') no-repeat;
+          background-size: 50% 50%;
         }
         &.@{treePrefixCls}-noline_close {
-          background-position: -97px -72px;
+          background: url('https://img.alicdn.com/tps/TB17BHzJVXXXXXEXXXXXXXXXXXX-10-14.svg') no-repeat;
+          background-size: 50% 50%;
         }
       }
       &.@{treePrefixCls}-checkbox {
-        width: 14px;
-        height: 14px;
+        width: 16px;
+        height: 16px;
         margin: 0 3px;
-        background-position: 0 0;
+        background: url("@{svg-path}/checkbox-normal.svg") no-repeat;
         &.@{treePrefixCls}-checkbox-checked {
-          background-position: -15px 0;
+          background: url("@{svg-path}/checkbox-checked.svg") no-repeat;
+          &.@{treePrefixCls}-checkbox-disabled {
+            background: url("@{svg-path}/checkbox-checked-disabled.svg") no-repeat;
+          }
         }
         &.@{treePrefixCls}-checkbox-indeterminate {
-          background-position: -15px -28px;
+          background: url("@{svg-path}/checkbox-normal.svg") no-repeat;
         }
         &-disabled {
-          background-position: 0 -28px!important;
+          background: url("@{svg-path}/checkbox-disabled.svg") no-repeat;
         }
       }
     }
