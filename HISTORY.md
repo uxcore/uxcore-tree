@@ -2,6 +2,9 @@
 
 ---
 
+## 0.2.1
+`CHANGED` update style
+
 ## 0.2.0
 `CHANGED` update rc-tree to ~1.1.0
 
