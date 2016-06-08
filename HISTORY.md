@@ -2,6 +2,9 @@
 
 ---
 
+## 0.2.3
+`CHANGED` update style
+
 ## 0.2.2
 `CHANGED` update style
 
