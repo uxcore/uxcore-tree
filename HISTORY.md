@@ -2,6 +2,9 @@
 
 ---
 
+## 0.2.4
+`CHANGED` change hover & selected styles
+
 ## 0.2.3
 `CHANGED` update style
 
