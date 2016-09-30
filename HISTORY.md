@@ -2,6 +2,9 @@
 
 ---
 
+## 0.2.6
+`FIXED` fix arraysEqual missing 
+
 ## 0.2.5
 `CHANGED` rewrite rc-tree render logic, move supportSvg judge to `render`
 

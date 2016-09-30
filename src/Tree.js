@@ -3,7 +3,7 @@ import RcTree from 'rc-tree';
 import classNames from 'classnames';
 import { 
     loopAllChildren, handleCheckState, 
-    filterParentPosition, getCheck 
+    filterParentPosition, getCheck, arraysEqual, 
 } from 'rc-tree/lib/util';
 
 let supportSVG = document.implementation.hasFeature(
