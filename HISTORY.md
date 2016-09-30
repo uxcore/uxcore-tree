@@ -2,6 +2,9 @@
 
 ---
 
+## 0.2.4
+`CHANGED` rewrite rc-tree render logic, move supportSvg judge to `render`
+
 ## 0.2.3
 `CHANGED` update style
 
