@@ -2,6 +2,9 @@
 
 ---
 
+## 0.2.7
+`FIXED` #1
+
 ## 0.2.6
 `FIXED` fix arraysEqual missing 
 
