@@ -9,7 +9,7 @@ export function generateData(x = 3, y = 2, z = 1, gData = []) {
     const children = [];
     for (let i = 0; i < x; i++) {
       const key = `${preKey}-${i}`;
-      tns.push({title: key + '-label', key: key + '-key'});
+      tns.push({ title: `${key}-label`, key: `${key}-key` });
       if (i < y) {
         children.push(key);
       }
@@ -28,7 +28,7 @@ export function generateData(x = 3, y = 2, z = 1, gData = []) {
 }
 export function calcTotal(x = 3, y = 2, z = 1) {
   /* eslint no-param-reassign:0*/
-  const rec = (n) => n >= 0 ? x * Math.pow(y, n--) + rec(n) : 0;
+  const rec = n => (n >= 0 ? ((x * Math.pow(y, n--)) + rec(n)) : 0);
   return rec(z + 1);
 }
 console.log('总节点数（单个tree）：', calcTotal());
@@ -37,9 +37,7 @@ console.log('总节点数（单个tree）：', calcTotal());
 export const gData = generateData();
 
 export function isInclude(smallArray, bigArray) {
-  return smallArray.every((ii, i) => {
-    return ii === bigArray[i];
-  });
+  return smallArray.every((ii, i) => ii === bigArray[i]);
 }
 // console.log(isInclude(['0', '1'], ['0', '10', '1']));
 
@@ -57,7 +55,7 @@ export function filterParentPosition(arr) {
   const levelArr = Object.keys(levelObj).sort();
   for (let i = 0; i < levelArr.length; i++) {
     if (levelArr[i + 1]) {
-      levelObj[levelArr[i]].forEach(ii => {
+      levelObj[levelArr[i]].forEach((ii) => {
         for (let j = i + 1; j < levelArr.length; j++) {
           levelObj[levelArr[j]].forEach((_i, index) => {
             if (isInclude(ii.split('-'), _i.split('-'))) {
@@ -70,13 +68,11 @@ export function filterParentPosition(arr) {
     }
   }
   let nArr = [];
-  levelArr.forEach(i => {
+  levelArr.forEach((i) => {
     nArr = nArr.concat(levelObj[i]);
   });
   return nArr;
 }
-// console.log(filterParentPosition(['0-2', '0-3-3', '0-10', '0-10-0', '0-0-1', '0-0', '0-1-1', '0-1']));
-
 
 function loopData(data, callback) {
   const loop = (d, level = 0) => {
@@ -107,7 +103,7 @@ export function getFilterExpandedKeys(data, expandedKeys) {
   });
   const filterExpandedKeys = [];
   loopData(data, (item, index, pos) => {
-    expandedPosArr.forEach(p => {
+    expandedPosArr.forEach((p) => {
       if ((splitLen(pos) < splitLen(p)
         && p.indexOf(pos) === 0 || pos === p)
         && filterExpandedKeys.indexOf(item.key) === -1) {

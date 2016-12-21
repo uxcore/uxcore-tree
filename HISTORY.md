@@ -2,6 +2,11 @@
 
 ---
 
+## 0.2.8
+* `FIXED` server render support [#3](https://github.com/uxcore/uxcore-tree/issues/3)
+* `CHANGED` new scaffold
+* `CHANGED` eslint (8 errors remaining)
+
 ## 0.2.7
 `FIXED` #1
 
