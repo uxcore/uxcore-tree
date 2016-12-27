@@ -7,14 +7,15 @@ import {
   filterParentPosition, getCheck, arraysEqual,
 } from 'rc-tree/lib/util';
 
-const supportSVG = document.implementation.hasFeature(
-  'http://www.w3.org/TR/SVG11/feature#BasicStructure', '1.1');
-
 /* eslint-disable no-underscore-dangle */
 
 class Tree extends RcTree {
   render() {
     const props = this.props;
+    let supportSVG = false;
+    if (document) {
+      supportSVG = document.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#BasicStructure', '1.1');
+    }
     const domProps = {
       className: classNames(props.className, props.prefixCls, {
         'use-svg': supportSVG,

@@ -2,6 +2,10 @@
 
 ---
 
+## 0.2.10
+
+* `FIXED` server render bug (missing document)
+
 ## 0.2.9
 
 * `FIXED` Table depends on refs.tree
