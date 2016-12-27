@@ -2,6 +2,10 @@
 
 ---
 
+## 0.2.9
+
+* `FIXED` Table depends on refs.tree
+
 ## 0.2.8
 * `FIXED` server render support [#3](https://github.com/uxcore/uxcore-tree/issues/3)
 * `CHANGED` new scaffold

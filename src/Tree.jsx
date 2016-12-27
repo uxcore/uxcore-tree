@@ -72,7 +72,7 @@ class Tree extends RcTree {
     }
 
     return (
-      <ul {...domProps} unselectable>
+      <ul {...domProps} unselectable ref="tree">
         {React.Children.map(props.children, this.renderTreeNode, this)}
       </ul>
     );
