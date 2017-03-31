@@ -11,43 +11,43 @@
 @treePrefixCls: kuma-tree;
 .@{treePrefixCls} {
   margin: 0;
-  padding: 5px;
+  padding: 2px;
   li {
     padding: 0;
     margin: 0;
     list-style: none;
     white-space: nowrap;
     outline: 0;
-    line-height: 24px;
+    line-height: 26px;
     ul {
       margin: 0;
-      padding: 0 0 0 18px;
+      padding: 0 0 0 20px;
       &.@{treePrefixCls}-line {
         background: url("https://t.alipayobjects.com/images/T13BtfXl0mXXXXXXXX.gif") 0 0 repeat-y;
       }
     }
     a {
       display: inline-block;
-      padding: 2px 6px;
+      padding: 2px 4px;
       cursor: pointer;
       text-decoration: none;
       line-height: 18px;
       vertical-align: middle;
-      color: #666;
+      color: @dark-alpha-3;
       &:hover {
-        background-color: hsv(round(hsvhue(@brand-primary) + 2), round(hsvsaturation(@brand-primary) - 78%), round(hsvvalue(@brand-primary) + 5%));
+        color: @dark-alpha-2;
       }
       &.@{treePrefixCls}-node-selected {
-        color: @brand-primary;
+        color: @dark-alpha-2;
       }
     }
     span {
       &.@{treePrefixCls}-switcher-noop,
       &.@{treePrefixCls}-switcher,
       &.@{treePrefixCls}-iconEle {
-        margin-right: 2px;
-        width: 18px;
-        height: 18px;
+        margin: 0 2px;
+        width: 16px;
+        height: 16px;
         display: inline-block;
         vertical-align: middle;
         border: 0 none;
@@ -105,9 +105,8 @@
     }
   }
   &-treenode-disabled {
-    > span,
-    > a {
-      color: gray;
+    a {
+      color: @normal-alpha-5 !important;
     }
   }
 }
@@ -126,7 +125,7 @@
     display: inline-block;
     width: 16px;
     height: 16px;
-    margin: 0 3px;
+    margin: 0 2px;
     vertical-align: middle;
     cursor: pointer;
     outline: none;

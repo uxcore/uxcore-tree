@@ -82,7 +82,7 @@ const Demo = React.createClass({
             </TreeNode>
           );
         }
-        return <TreeNode key={item.key} title={item.title} />;
+        return <TreeNode key={item.key} title={item.title} disabled={item.key === '0-2-key'} />;
       });
     };
     // console.log(getRadioSelectKeys(gData, this.state.selectedKeys));
