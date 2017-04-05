@@ -97,6 +97,11 @@
         }
       }
     }
+    &.@{treePrefixCls}-treenode-disabled {
+      a {
+        color: @normal-alpha-5;
+      }
+    }
   }
   &-child-tree {
     display: none;
@@ -104,12 +109,8 @@
       display: block;
     }
   }
-  &-treenode-disabled {
-    a {
-      color: @normal-alpha-5 !important;
-    }
-  }
 }
+
 .use-svg {
   .@{treePrefixCls}-switcher {
     &.@{treePrefixCls}-noline_open {
@@ -144,6 +145,7 @@
     }
   }
 }
+
 .no-svg {
   .@{treePrefixCls}-switcher {
     &.@{treePrefixCls}-noline_open {
@@ -170,7 +172,7 @@
       background-position: -15px -28px;
     }
     &-disabled {
-      background-position: 0 -28px!important;
+      background-position: 0 -28px !important;
     }
   }
 }
