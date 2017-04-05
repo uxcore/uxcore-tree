@@ -2,6 +2,10 @@
 
 ---
 
+## 0.2.11
+
+* `CHANGED` new style
+
 ## 0.2.10
 
 * `FIXED` server render bug (missing document)
