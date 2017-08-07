@@ -2,12 +2,51 @@ import assign from 'object-assign';
 import RcTree from 'rc-tree';
 import classNames from 'classnames';
 import React from 'react';
+import cssAnimation from 'css-animation';
 import {
   loopAllChildren, handleCheckState,
   filterParentPosition, getCheck, arraysEqual,
 } from 'rc-tree/lib/util';
 
 /* eslint-disable no-underscore-dangle */
+
+/* animate */
+const animate = (node, show, done) => {
+  let height;
+  return cssAnimation(node, 'kuma-tree-collapse', {
+    start() {
+      if (!show) {
+        node.style.height = `${node.offsetHeight}px`;
+        node.style.opacity = 1;
+      } else {
+        height = node.offsetHeight;
+        node.style.height = 0;
+        node.style.opacity = 0;
+      }
+    },
+    active() {
+      node.style.height = `${show ? height : 0}px`;
+      node.style.opacity = show ? 1 : 0;
+    },
+    end() {
+      node.style.height = '';
+      node.style.opacity = '';
+      done();
+    },
+  });
+};
+
+const animation = {
+  enter(node, done) {
+    return animate(node, true, done);
+  },
+  leave(node, done) {
+    return animate(node, false, done);
+  },
+  appear(node, done) {
+    return animate(node, true, done);
+  },
+};
 
 class Tree extends RcTree {
   render() {
@@ -84,6 +123,7 @@ Tree.propTypes = RcTree.propTypes;
 Tree.defaultProps = assign(RcTree.defaultProps, {
   prefixCls: 'kuma-tree',
   showIcon: false,
+  openAnimation: animation,
 });
 
 Tree.TreeNode = RcTree.TreeNode;
