@@ -2,6 +2,10 @@
 
 ---
 
+## 0.2.12
+
+* `CHANGED` add animation
+
 ## 0.2.11
 
 * `CHANGED` new style
