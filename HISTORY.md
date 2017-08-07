@@ -1,6 +1,9 @@
 # History
 
 ---
+## 0.2.13
+
+* `FIXED` fixed animation bug
 
 ## 0.2.12
 
