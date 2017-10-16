@@ -20,8 +20,8 @@ const animate = (node, show, done) => {
         node.style.opacity = 1;
       } else {
         height = node.offsetHeight;
-        node.style.height = 0;
-        node.style.opacity = 0;
+        node.style.height = '0px';
+        node.style.opacity = '0px';
       }
     },
     active() {

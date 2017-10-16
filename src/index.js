@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./Tree');
+export default from './Tree';
