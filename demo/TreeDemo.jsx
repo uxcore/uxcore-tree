@@ -91,18 +91,23 @@ const Demo = React.createClass({
       <Tree
         checkable
         multiple={this.props.multiple}
-        onExpand={this.onExpand} expandedKeys={this.state.expandedKeys}
+        onExpand={this.onExpand}
+        expandedKeys={this.state.expandedKeys}
         autoExpandParent={this.state.autoExpandParent}
-        onCheck={this.onCheck} checkedKeys={this.state.checkedKeys}
-        onSelect={this.onSelect} selectedKeys={this.state.selectedKeys}
+        onCheck={this.onCheck}
+        checkedKeys={this.state.checkedKeys}
+        onSelect={this.onSelect}
+        selectedKeys={this.state.selectedKeys}
       >
         {loop(gData)}
       </Tree>
       <h2>checkStrictly</h2>
       <Tree
         checkable
-        multiple={this.props.multiple} defaultExpandAll
-        onExpand={this.onExpand} expandedKeys={this.state.expandedKeys}
+        multiple={this.props.multiple}
+        defaultExpandAll
+        onExpand={this.onExpand}
+        expandedKeys={this.state.expandedKeys}
         onCheck={this.onCheckStrictly}
         checkedKeys={this.state.checkStrictlyKeys}
         checkStrictly
