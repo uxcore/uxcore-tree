@@ -1,6 +1,10 @@
 # History
 
 ---
+## 0.2.15
+
+* `UPDATE` update tree css
+
 ## 0.2.13
 
 * `FIXED` fixed animation bug
