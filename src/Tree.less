@@ -34,11 +34,14 @@
       line-height: 18px;
       vertical-align: middle;
       color: @dark-alpha-3;
+      border-radius: 3px;
       &:hover {
         color: @dark-alpha-2;
+        background: @normal-alpha-9;        
       }
       &.@{treePrefixCls}-node-selected {
         color: @dark-alpha-2;
+        background: @normal-alpha-8;
       }
     }
     span {
@@ -100,6 +103,9 @@
     &.@{treePrefixCls}-treenode-disabled {
       a {
         color: @normal-alpha-5;
+        &:hover {
+          background:transparent;
+        }
       }
     }
   }
@@ -143,12 +149,18 @@
       &.@{treePrefixCls}-checkbox-disabled {
         background: url("@{svg-path}/checkbox-checked-disabled.svg") no-repeat;
       }
+      &:hover {
+        background: url("@{svg-path}/checkbox-checked.svg") no-repeat;
+      }
     }
     &.@{treePrefixCls}-checkbox-indeterminate {
       background: url("@{svg-path}/checkbox-partial-checked.svg") no-repeat;
     }
     &-checkbox-disabled {
       background: url("@{svg-path}/checkbox-disabled.svg") no-repeat;
+    }
+    &:hover {
+      background: url("@{svg-path}/checkbox-hover.svg") no-repeat;
     }
   }
 }
