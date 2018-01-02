@@ -49,7 +49,7 @@ http://uxcore.github.io/uxcore/components/tree/
 |defaultCheckedKeys | default checked treeNodes | String[] | [] |
 |selectedKeys | Controlled selected treeNodes(After setting, defaultSelectedKeys will not work) | String[] | [] |
 |defaultSelectedKeys | default selected treeNodes | String[] | [] |
-|onExpand | fire on treeNode expand or not | function(node, expanded, expandedKeys) | - |
+|onExpand | fire on treeNode expand or not | function(expandedKeys, {expanded: bool, node}) | - |
 |onCheck | click the treeNode/checkbox to fire | function(checkedKeys, e:{checked: bool, checkedNodes, node, event}) | - |
 |onSelect | click the treeNode to fire | function(selectedKeys, e:{selected: bool, selectedNodes, node, event}) | - |
 |filterTreeNode | filter some treeNodes as you need. it should return true | function(node) | - |

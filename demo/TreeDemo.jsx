@@ -69,8 +69,7 @@ const Demo = React.createClass({
     });
   },
   render() {
-    const loop = (data) => {
-      return data.map((item) => {
+    const loop = (data) => data.map((item) => {
         if (item.children) {
           return (
             <TreeNode
@@ -84,7 +83,6 @@ const Demo = React.createClass({
         }
         return <TreeNode key={item.key} title={item.title} disabled={item.key === '0-2-key'} />;
       });
-    };
     // console.log(getRadioSelectKeys(gData, this.state.selectedKeys));
     return (<div style={{ padding: '0 20px' }}>
       <h2>controlled</h2>
