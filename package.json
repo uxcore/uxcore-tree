@@ -1,6 +1,6 @@
 {
  "name": "uxcore-tree",
- "version": "0.2.16",
+ "version": "0.2.17",
  "description": "uxcore-tree ui component for react",
  "main": "build/index.js",
  "scripts": {
