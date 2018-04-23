@@ -1,6 +1,6 @@
 {
   "name": "uxcore-tree",
-  "version": "0.2.18",
+  "version": "0.2.17",
   "description": "uxcore-tree ui component for react",
   "main": "build/index.js",
   "scripts": {
@@ -8,8 +8,8 @@
     "server": "uxcore-tools run server",
     "lint": "uxcore-tools run lint",
     "build": "uxcore-tools run build",
-    "test": "uxcore-tools run test",
-    "coverage": "uxcore-tools run coverage",
+    "test": "uxcore-tools run electron",
+    "coverage": "uxcore-tools run electron-coverage",
     "pub": "uxcore-tools run pub",
     "dep": "uxcore-tools run dep",
     "tnpm-dep": "uxcore-tools run tnpm-dep",
@@ -50,7 +50,7 @@
     "css-animation": "^1.3.2",
     "object-assign": "^4.0.0",
     "prop-types": "15.x",
-    "rc-tree": "1.11.0"
+    "rc-tree": "~1.11.0"
   },
   "author": "",
   "contributors": [],
