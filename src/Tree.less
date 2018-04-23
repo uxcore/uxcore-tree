@@ -6,192 +6,205 @@
  * All rights reserved.
  */
 
-@tree-assets-img: 'https://aliwork.alicdn.com/tps/TB1k_tsKpXXXXcQXFXXXXXXXXXX-130-87.png';
+ @tree-assets-img: 'https://aliwork.alicdn.com/tps/TB1k_tsKpXXXXcQXFXXXXXXXXXX-130-87.png';
 
-@treePrefixCls: kuma-tree;
-.@{treePrefixCls} {
-  margin: 0;
-  padding: 2px;
-  li {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    white-space: nowrap;
-    outline: 0;
-    line-height: 26px;
-    ul {
-      margin: 0;
-      padding: 0 0 0 20px;
-      &.@{treePrefixCls}-line {
-        background: url("https://t.alipayobjects.com/images/T13BtfXl0mXXXXXXXX.gif") 0 0 repeat-y;
-      }
-    }
-    a {
-      display: inline-block;
-      padding: 2px 4px;
-      cursor: pointer;
-      text-decoration: none;
-      line-height: 18px;
-      vertical-align: middle;
-      color: @dark-alpha-3;
-      border-radius: 3px;
-      &:hover {
-        color: @dark-alpha-2;
-        background: @normal-alpha-9;        
-      }
-      &.@{treePrefixCls}-node-selected {
-        color: @dark-alpha-2;
-        background: @normal-alpha-8;
-      }
-    }
-    span {
-      &.@{treePrefixCls}-switcher-noop,
-      &.@{treePrefixCls}-switcher,
-      &.@{treePrefixCls}-iconEle {
-        margin: 0 2px;
-        width: 16px;
-        height: 16px;
-        display: inline-block;
-        vertical-align: middle;
-        border: 0 none;
-        cursor: pointer;
-        outline: none;
-        background-color: transparent;
-        background-repeat: no-repeat;
-        background-attachment: scroll;
-        background-image: url(@tree-assets-img);
-      }
-      &.@{treePrefixCls}-icon_loading {
-        margin-right: 2px;
-        background: url('https://t.alipayobjects.com/images/rmsweb/T1YxhiXgJbXXXXXXXX.gif') no-repeat scroll 0 0;
-      }
-      &.@{treePrefixCls}-switcher-noop {
-        background-image: none;
-      }
-      &.@{treePrefixCls}-switcher {
-        &-disabled {
-          background: #fff;
-          position: relative;
-          &:after {
-            content: '-';
-            position: absolute;
-            top: 8px;
-            left: 6px;
-            color: gray;
-          }
-        }
-        &.@{treePrefixCls}-roots_open {
-          background-position: -112px 0px;
-        }
-        &.@{treePrefixCls}-roots_close {
-          background-position: -94px 0px;
-        }
-        &.@{treePrefixCls}-center_open {
-          background-position: -112px -18px;
-        }
-        &.@{treePrefixCls}-center_close {
-          background-position: -94px -18px;
-        }
-        &.@{treePrefixCls}-bottom_open {
-          background-position: -112px -36px;
-        }
-        &.@{treePrefixCls}-bottom_close {
-          background-position: -94px -36px;
-        }
-      }
-    }
-    &.@{treePrefixCls}-treenode-disabled {
-      a {
-        color: @normal-alpha-5;
-        &:hover {
-          background:transparent;
-        }
-      }
-    }
-  }
-  &-child-tree {
-    display: none;
-    &-open {
-      display: block;
-    }
-  }
-}
-.@{treePrefixCls}-collapse {
-  overflow: hidden;
-  transition: height 0.3s ease-out, opacity 0.3s ease-out;
-}
-.use-svg {
-  .@{treePrefixCls}-switcher {
-    &.@{treePrefixCls}-noline_open {
-      background: url('https://img.alicdn.com/tps/TB1IvveJVXXXXbcXFXXXXXXXXXX-14-10.svg') 50% 50% no-repeat;
-      background-size: 50% auto;
-      transform: rotate(0deg);
-      transition: all .3s;
-    }
-    &.@{treePrefixCls}-noline_close {     
-      background: url('https://img.alicdn.com/tps/TB1IvveJVXXXXbcXFXXXXXXXXXX-14-10.svg') 50% 50% no-repeat;
-      background-size: 50% auto ;
-      transform: rotate(-90deg);
-      transition: transform .3s;
-    }
-  }
-  .@{treePrefixCls}-checkbox {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin: 0 2px;
-    vertical-align: middle;
-    cursor: pointer;
-    outline: none;
-    background: url("@{svg-path}/checkbox-normal.svg") no-repeat;
-    &.@{treePrefixCls}-checkbox-checked {
-      background: url("@{svg-path}/checkbox-checked.svg") no-repeat;
-      &.@{treePrefixCls}-checkbox-disabled {
-        background: url("@{svg-path}/checkbox-checked-disabled.svg") no-repeat;
-      }
-      &:hover {
-        background: url("@{svg-path}/checkbox-checked.svg") no-repeat;
-      }
-    }
-    &.@{treePrefixCls}-checkbox-indeterminate {
-      background: url("@{svg-path}/checkbox-partial-checked.svg") no-repeat;
-    }
-    &-checkbox-disabled {
-      background: url("@{svg-path}/checkbox-disabled.svg") no-repeat;
-    }
-    &:hover {
-      background: url("@{svg-path}/checkbox-hover.svg") no-repeat;
-    }
-  }
-}
-
-.no-svg {
-  .@{treePrefixCls}-switcher {
-    &.@{treePrefixCls}-noline_open {
-      background-position: -115px -72px;
-    }
-    &.@{treePrefixCls}-noline_close {
-      background-position: -97px -72px;
-    }
-  }
-  .@{treePrefixCls}-checkbox {
-    margin-right: 2px;
-    display: inline-block;
-    vertical-align: middle;
-    cursor: pointer;
-    outline: none;
-    background-image: url(@tree-assets-img);
-    width: 14px;
-    height: 14px;
-    background-position: 0 0;
-    &.@{treePrefixCls}-checkbox-checked {
-      background-position: -15px 0;
-    }
-    &.@{treePrefixCls}-checkbox-indeterminate {
-      background-position: -15px -28px;
-    }
-    &-disabled {
-      background-position: 0 -28px !important;
-    }
-  }
-}
+ @treePrefixCls: kuma-tree;
+ .@{treePrefixCls} {
+   margin: 0;
+   padding: 2px;
+   li {
+     padding: 0;
+     margin: 0;
+     list-style: none;
+     white-space: nowrap;
+     outline: 0;
+     line-height: 26px;
+     ul {
+       margin: 0;
+       padding: 0 0 0 20px;
+       &.@{treePrefixCls}-line {
+         background: url("https://t.alipayobjects.com/images/T13BtfXl0mXXXXXXXX.gif") 0 0 repeat-y;
+       }
+     }
+     a, .@{treePrefixCls}-node-content-wrapper-normal {
+       display: inline-block;
+       padding: 2px 4px;
+       cursor: pointer;
+       text-decoration: none;
+       line-height: 18px;
+       vertical-align: middle;
+       color: @dark-alpha-3;
+       border-radius: 3px;
+       &:hover {
+         color: @dark-alpha-2;
+         background: @normal-alpha-9;        
+       }
+       &.@{treePrefixCls}-node-selected {
+         color: @dark-alpha-2;
+         background: @normal-alpha-8;
+       }
+     }
+     span {
+       &.@{treePrefixCls}-switcher-noop,
+       &.@{treePrefixCls}-switcher,
+       &.@{treePrefixCls}-iconEle {
+         margin: 0 2px;
+         width: 16px;
+         height: 16px;
+         display: inline-block;
+         vertical-align: middle;
+         border: 0 none;
+         cursor: pointer;
+         outline: none;
+         background-color: transparent;
+         background-repeat: no-repeat;
+         background-attachment: scroll;
+         background-image: url(@tree-assets-img);
+       }
+       &.@{treePrefixCls}-icon_loading {
+         margin-right: 2px;
+         background: url('https://t.alipayobjects.com/images/rmsweb/T1YxhiXgJbXXXXXXXX.gif') no-repeat scroll 0 0;
+       }
+       &.@{treePrefixCls}-switcher-noop {
+         background-image: none;
+       }
+       &.@{treePrefixCls}-switcher {
+         &-disabled {
+           background: #fff;
+           position: relative;
+           &:after {
+             content: '-';
+             position: absolute;
+             top: 8px;
+             left: 6px;
+             color: gray;
+           }
+         }
+         &.@{treePrefixCls}-roots_open {
+           background-position: -112px 0px;
+         }
+         &.@{treePrefixCls}-roots_close {
+           background-position: -94px 0px;
+         }
+         &.@{treePrefixCls}-center_open {
+           background-position: -112px -18px;
+         }
+         &.@{treePrefixCls}-center_close {
+           background-position: -94px -18px;
+         }
+         &.@{treePrefixCls}-bottom_open {
+           background-position: -112px -36px;
+         }
+         &.@{treePrefixCls}-bottom_close {
+           background-position: -94px -36px;
+         }
+       }
+     }
+     &.@{treePrefixCls}-treenode-disabled {
+       a {
+         color: @normal-alpha-5;
+         &:hover {
+           background:transparent;
+         }
+       }
+     }
+   }
+   &-child-tree {
+     display: none;
+     &-open {
+       display: block;
+     }
+   }
+ }
+ .@{treePrefixCls}-collapse {
+   overflow: hidden;
+   transition: height 0.3s ease-out, opacity 0.3s ease-out;
+ }
+ .use-svg {
+   .@{treePrefixCls}-switcher {
+     &.@{treePrefixCls}-noline_open {
+       background: url('https://img.alicdn.com/tps/TB1IvveJVXXXXbcXFXXXXXXXXXX-14-10.svg') 50% 50% no-repeat;
+       background-size: 50% auto;
+       transform: rotate(0deg);
+       transition: all .3s;
+     }
+     &.@{treePrefixCls}-noline_close {     
+       background: url('https://img.alicdn.com/tps/TB1IvveJVXXXXbcXFXXXXXXXXXX-14-10.svg') 50% 50% no-repeat;
+       background-size: 50% auto ;
+       transform: rotate(-90deg);
+       transition: transform .3s;
+     }
+     &.@{treePrefixCls}-switcher_open {
+       background: url('https://img.alicdn.com/tps/TB1IvveJVXXXXbcXFXXXXXXXXXX-14-10.svg') 50% 50% no-repeat;
+       background-size: 50% auto;
+       transform: rotate(0deg);
+       transition: all .3s;
+     }
+     &.@{treePrefixCls}-switcher_close {     
+       background: url('https://img.alicdn.com/tps/TB1IvveJVXXXXbcXFXXXXXXXXXX-14-10.svg') 50% 50% no-repeat;
+       background-size: 50% auto ;
+       transform: rotate(-90deg);
+       transition: transform .3s;
+     }
+   }
+   .@{treePrefixCls}-checkbox {
+     display: inline-block;
+     width: 16px;
+     height: 16px;
+     margin: 0 2px;
+     vertical-align: middle;
+     cursor: pointer;
+     outline: none;
+     background: url("@{svg-path}/checkbox-normal.svg") no-repeat;
+     &.@{treePrefixCls}-checkbox-checked {
+       background: url("@{svg-path}/checkbox-checked.svg") no-repeat;
+       &.@{treePrefixCls}-checkbox-disabled {
+         background: url("@{svg-path}/checkbox-checked-disabled.svg") no-repeat;
+       }
+       &:hover {
+         background: url("@{svg-path}/checkbox-checked.svg") no-repeat;
+       }
+     }
+     &.@{treePrefixCls}-checkbox-indeterminate {
+       background: url("@{svg-path}/checkbox-partial-checked.svg") no-repeat;
+     }
+     &-checkbox-disabled {
+       background: url("@{svg-path}/checkbox-disabled.svg") no-repeat;
+     }
+     &:hover {
+       background: url("@{svg-path}/checkbox-hover.svg") no-repeat;
+     }
+   }
+ }
+ 
+ .no-svg {
+   .@{treePrefixCls}-switcher {
+     &.@{treePrefixCls}-switcher_open {
+       background-position: -115px -72px;
+     }
+     &.@{treePrefixCls}-switcher_close {
+       background-position: -97px -72px;
+     }
+   }
+   .@{treePrefixCls}-checkbox {
+     margin-right: 2px;
+     display: inline-block;
+     vertical-align: middle;
+     cursor: pointer;
+     outline: none;
+     background-image: url(@tree-assets-img);
+     width: 14px;
+     height: 14px;
+     background-position: 0 0;
+     &.@{treePrefixCls}-checkbox-checked {
+       background-position: -15px 0;
+     }
+     &.@{treePrefixCls}-checkbox-indeterminate {
+       background-position: -15px -28px;
+     }
+     &-disabled {
+       background-position: 0 -28px !important;
+     }
+   }
+ }
+ 
