@@ -3,11 +3,6 @@ import RcTree from 'rc-tree';
 import classNames from 'classnames';
 import React from 'react';
 import cssAnimation from 'css-animation';
-import {
-  loopAllChildren, handleCheckState,
-  filterParentPosition, getCheck, arraysEqual,
-} from 'rc-tree/lib/util';
-
 /* eslint-disable no-underscore-dangle */
 
 /* animate */
@@ -50,70 +45,35 @@ const animation = {
 
 class Tree extends RcTree {
   render() {
-    const props = this.props;
+    const {
+      prefixCls, className, focusable,
+      showLine,
+      children,
+    } = this.props;
     let supportSVG = false;
     if (document) {
       supportSVG = document.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#BasicStructure', '1.1');
     }
     const domProps = {
-      className: classNames(props.className, props.prefixCls, {
+      className: classNames(className, prefixCls, {
         'use-svg': supportSVG,
         'no-svg': !supportSVG,
+        [`${prefixCls}-show-line`]: showLine,
       }),
       role: 'tree-node',
     };
-    if (props.focusable) {
+    if (focusable) {
       domProps.tabIndex = '0';
       domProps.onKeyDown = this.onKeyDown;
     }
-    // console.log(this.state.expandedKeys, this._rawExpandedKeys, props.children);
-    if (props.checkable && (this.checkedKeysChange || props.loadData)) {
-      if (props.checkStrictly) {
-        this.treeNodesStates = {};
-        loopAllChildren(props.children, (item, index, pos, keyOrPos, siblingPosition) => {
-          this.treeNodesStates[pos] = {
-            siblingPosition,
-          };
-        });
-      } else if (props._treeNodesStates) {
-        this.treeNodesStates = props._treeNodesStates.treeNodesStates;
-        this.halfCheckedKeys = props._treeNodesStates.halfCheckedKeys;
-        this.checkedKeys = props._treeNodesStates.checkedKeys;
-      } else {
-        const checkedKeys = this.state.checkedKeys;
-        let checkKeys;
-        if (!props.loadData && this.checkKeys && this._checkedKeys &&
-          arraysEqual(this._checkedKeys, checkedKeys)) {
-          // if checkedKeys the same as _checkedKeys from onCheck, use _checkedKeys.
-          checkKeys = this.checkKeys;
-        } else {
-          const checkedPositions = [];
-          this.treeNodesStates = {};
-          loopAllChildren(props.children, (item, index, pos, keyOrPos, siblingPosition) => {
-            this.treeNodesStates[pos] = {
-              node: item,
-              key: keyOrPos,
-              checked: false,
-              halfChecked: false,
-              siblingPosition,
-            };
-            if (checkedKeys.indexOf(keyOrPos) !== -1) {
-              this.treeNodesStates[pos].checked = true;
-              checkedPositions.push(pos);
-            }
-          });
-          // if the parent node's key exists, it all children node will be checked
-          handleCheckState(this.treeNodesStates, filterParentPosition(checkedPositions), true);
-          checkKeys = getCheck(this.treeNodesStates);
-        }
-        this.halfCheckedKeys = checkKeys.halfCheckedKeys;
-        this.checkedKeys = checkKeys.checkedKeys;
-      }
-    }
 
     return (
-      <ul {...domProps} unselectable ref="tree">
-        {React.Children.map(props.children, this.renderTreeNode, this)}
+      <ul
+        {...domProps}
+        unselectable="on"
+        ref={(c) => { this.tree = c; }}
+      >
+        {React.Children.map(children, this.renderTreeNode, this)}
       </ul>
     );
   }

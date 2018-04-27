@@ -24,8 +24,8 @@ const Demo = React.createClass({
       selectedKeys: [],
     };
   },
-  onExpand(expandedKeys) {
-    console.log('onExpand', arguments);
+  onExpand(expandedKeys, ...args) {
+    console.log('onExpand', args);
     // if not set autoExpandParent to false, if children expanded, parent can not collapse.
     // or, you can remove all expanded chilren keys.
     this.setState({
@@ -34,12 +34,14 @@ const Demo = React.createClass({
     });
   },
   onCheck(checkedKeys) {
+    console.log('onCheck', checkedKeys);
     this.setState({
       checkedKeys,
     });
   },
-  onCheckStrictly(checkedKeys, /* extra*/) {
-    console.log(arguments);
+  onCheckStrictly(checkedKeys, ...args /* extra */) {
+    console.log('onCheckStrictly');
+    console.log(args);
     // const { checkedNodesPositions } = extra;
     // const pps = filterParentPosition(checkedNodesPositions.map(i => i.pos));
     // console.log(checkedNodesPositions.filter(i => pps.indexOf(i.pos) > -1).map(i => i.node.key));
@@ -60,6 +62,7 @@ const Demo = React.createClass({
     });
   },
   onRbSelect(selectedKeys, info) {
+    console.log('onRbSelect');
     let newSelectedKeys = selectedKeys;
     if (info.selected) {
       newSelectedKeys = getRadioSelectKeys(gData, selectedKeys, info.node.props.eventKey);
@@ -69,59 +72,62 @@ const Demo = React.createClass({
     });
   },
   render() {
-    const loop = (data) => data.map((item) => {
+    console.log('render', gData);
+    const loop = data => data.map((item) => {
       if (item.children) {
         return (
-            <TreeNode
-              key={item.key}
-              title={item.title}
-              disableCheckbox={item.key === '0-0-0-key'}
-            >
-              {loop(item.children)}
-            </TreeNode>
-          );
+          <TreeNode
+            key={item.key}
+            title={item.title}
+            disableCheckbox={item.key === '0-0-0-key'}
+          >
+            {loop(item.children)}
+          </TreeNode>
+        );
       }
       return <TreeNode key={item.key} title={item.title} disabled={item.key === '0-2-key'} />;
     });
+    console.log('looping', loop(gData));
     // console.log(getRadioSelectKeys(gData, this.state.selectedKeys));
-    return (<div style={{ padding: '0 20px' }}>
-      <h2>controlled</h2>
-      <Tree
-        checkable
-        multiple={this.props.multiple}
-        onExpand={this.onExpand}
-        expandedKeys={this.state.expandedKeys}
-        autoExpandParent={this.state.autoExpandParent}
-        onCheck={this.onCheck}
-        checkedKeys={this.state.checkedKeys}
-        onSelect={this.onSelect}
-        selectedKeys={this.state.selectedKeys}
-      >
-        {loop(gData)}
-      </Tree>
-      <h2>checkStrictly</h2>
-      <Tree
-        checkable
-        multiple={this.props.multiple}
-        defaultExpandAll
-        onExpand={this.onExpand}
-        expandedKeys={this.state.expandedKeys}
-        onCheck={this.onCheckStrictly}
-        checkedKeys={this.state.checkStrictlyKeys}
-        checkStrictly
-      >
-        {loop(gData)}
-      </Tree>
-      <h2>{'radio\'s behavior select (in the same level)'}</h2>
-      <Tree
-        multiple
-        defaultExpandAll
-        onSelect={this.onRbSelect}
-        selectedKeys={getRadioSelectKeys(gData, this.state.selectedKeys)}
-      >
-        {loop(gData)}
-      </Tree>
-    </div>);
+    return (
+      <div style={{ padding: '0 20px' }}>
+        <h2>controlled</h2>
+        <Tree
+          checkable
+          multiple={this.props.multiple}
+          onExpand={this.onExpand}
+          expandedKeys={this.state.expandedKeys}
+          autoExpandParent={this.state.autoExpandParent}
+          onCheck={this.onCheck}
+          checkedKeys={this.state.checkedKeys}
+          onSelect={this.onSelect}
+          selectedKeys={this.state.selectedKeys}
+        >
+          {loop(gData)}
+        </Tree>
+        <h2>checkStrictly</h2>
+        <Tree
+          checkable
+          multiple={this.props.multiple}
+          defaultExpandAll
+          onExpand={this.onExpand}
+          expandedKeys={this.state.expandedKeys}
+          onCheck={this.onCheckStrictly}
+          checkedKeys={this.state.checkStrictlyKeys}
+          checkStrictly
+        >
+          {loop(gData)}
+        </Tree>
+        <h2>{'radio\'s behavior select (in the same level)'}</h2>
+        <Tree
+          multiple
+          defaultExpandAll
+          onSelect={this.onRbSelect}
+          selectedKeys={getRadioSelectKeys(gData, this.state.selectedKeys)}
+        >
+          {loop(gData)}
+        </Tree>
+      </div>);
   },
 });
 

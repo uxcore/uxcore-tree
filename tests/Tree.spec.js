@@ -48,7 +48,7 @@ describe('Tree', () => {
     });
     instance = ReactDOM.render(<Demo />, div);
     const formFieldNode = instance.refs.tree;
-    expect(formFieldNode.refs.tree.getElementsByClassName('kuma-tree-checkbox ')).to.have.length(3);
+    expect(formFieldNode.tree.getElementsByClassName('kuma-tree-checkbox ')).to.have.length(3);
     done();
   });
 
@@ -62,7 +62,7 @@ describe('Tree', () => {
     });
     instance = ReactDOM.render(<Demo />, div);
     const formFieldNode = instance.refs.tree;
-    expect(formFieldNode.refs.tree.getElementsByClassName('no-svg')).to.have.length(0);
+    expect(formFieldNode.tree.getElementsByClassName('no-svg')).to.have.length(0);
     done();
   });
 
@@ -76,7 +76,7 @@ describe('Tree', () => {
     });
     instance = ReactDOM.render(<Demo />, div);
     const formFieldNode = instance.refs.tree;
-    expect(formFieldNode.refs.tree.getElementsByClassName('kuma-tree-iconEle')).to.have.length(3);
+    expect(formFieldNode.tree.getElementsByClassName('kuma-tree-iconEle')).to.have.length(3);
     done();
   });
 /*
@@ -93,7 +93,7 @@ describe('Tree', () => {
     });
     instance = ReactDOM.render(<Demo />, div);
     const formFieldNode = instance.refs.tree;
-    expect(formFieldNode.refs.tree.getElementsByClassName('kuma-tree-checkbox-checked')).to.have.length(1);
+    expect(formFieldNode.tree.getElementsByClassName('kuma-tree-checkbox-checked')).to.have.length(1);
     done();
   });
 
@@ -118,8 +118,8 @@ describe('Tree', () => {
     });
     instance = ReactDOM.render(<Demo />, div);
     const formFieldNode = instance.refs.tree;
-    formFieldNode.refs.tree.getElementsByClassName('kuma-tree-title')[0].click();
-    expect(formFieldNode.refs.tree.getElementsByClassName('kuma-tree-node-selected')).to.have.length(1);
+    formFieldNode.tree.getElementsByClassName('kuma-tree-title')[0].click();
+    expect(formFieldNode.tree.getElementsByClassName('kuma-tree-node-selected')).to.have.length(1);
     done();
   });
   it('onCheck', (done) => {
@@ -142,8 +142,8 @@ describe('Tree', () => {
     });
     instance = ReactDOM.render(<Demo />, div);
     const formFieldNode = instance.refs.tree;
-    formFieldNode.refs.tree.getElementsByClassName('kuma-tree-checkbox')[0].click();
-    expect(formFieldNode.refs.tree.getElementsByClassName('kuma-tree-checkbox-checked')).to.have.length(1);
+    formFieldNode.tree.getElementsByClassName('kuma-tree-checkbox')[0].click();
+    expect(formFieldNode.tree.getElementsByClassName('kuma-tree-checkbox-checked')).to.have.length(1);
     done();
   });
 
@@ -157,8 +157,8 @@ describe('Tree', () => {
     });
     instance = ReactDOM.render(<Demo />, div);
     const formFieldNode = instance.refs.tree;
-    formFieldNode.refs.tree.getElementsByClassName('kuma-tree-noline_close')[0].click();
-    expect(formFieldNode.refs.tree.getElementsByClassName('kuma-tree-noline_open')).to.have.length(1);
+    formFieldNode.tree.getElementsByClassName('kuma-tree-switcher_close')[0].click();
+    expect(formFieldNode.tree.getElementsByClassName('kuma-tree-switcher_open')).to.have.length(1);
     done();
   });
 
@@ -172,7 +172,7 @@ describe('Tree', () => {
     });
     instance = ReactDOM.render(<Demo />, div);
     const formFieldNode = instance.refs.tree;
-    expect(formFieldNode.refs.tree.getElementsByClassName('kuma-tree-checkbox-checked')).to.have.length(1);
+    expect(formFieldNode.tree.getElementsByClassName('kuma-tree-checkbox-checked')).to.have.length(1);
     done();
   });
 });
