@@ -1,6 +1,11 @@
 # History
 
 ---
+
+## 0.2.18
+
+* `CHANGED` update `rc-tree` to `~1.11.0`  
+
 ## 0.2.15
 
 * `UPDATE` update tree css
