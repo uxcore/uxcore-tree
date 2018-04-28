@@ -36,6 +36,7 @@ http://uxcore.github.io/uxcore/components/tree/
 |----------|----------------|----------|--------------|
 |className | additional css class of root dom node | String | '' |
 |prefixCls | prefix class | String | '' |
+|disabled | whether disabled the tree | bool | false |
 |showLine | whether show line | bool | true |
 |showIcon | whether show icon | bool | true |
 |selectable | whether can be selected | bool | true |
@@ -43,12 +44,15 @@ http://uxcore.github.io/uxcore/components/tree/
 |checkable | whether support checked | bool/React Node | false |
 |defaultExpandAll | expand all treeNodes | bool | false |
 |defaultExpandedKeys | expand specific treeNodes | String[] | - |
+|defaultExpandParent | auto expand parent treeNodes when init | bool | True |
 |expandedKeys | Controlled expand specific treeNodes | String[] | - |
 |autoExpandParent | whether auto expand parent treeNodes | bool | true |
-|checkedKeys | Controlled checked treeNodes(After setting, defaultCheckedKeys will not work) | String[] | [] |
+|checkedKeys | Controlled checked treeNodes(After setting, defaultCheckedKeys will not work). Note: parent and children nodes are associated, if the parent node's key exists, it all children node will be checked, and vice versa. When set checkable and checkStrictly, it should be an object, which contains checked array and halfChecked array. | String[]/{checked:Array,halfChecked:Array} | [] |
 |defaultCheckedKeys | default checked treeNodes | String[] | [] |
+|checkStrictly | check node precisely, parent and children nodes are not associated | bool | false |
 |selectedKeys | Controlled selected treeNodes(After setting, defaultSelectedKeys will not work) | String[] | [] |
 |defaultSelectedKeys | default selected treeNodes | String[] | [] |
+|icon | customize icon. When you pass component, whose render will receive full TreeNode props as component props | element/Function(props) | - |
 |onExpand | fire on treeNode expand or not | function(expandedKeys, {expanded: bool, node}) | - |
 |onCheck | click the treeNode/checkbox to fire | function(checkedKeys, e:{checked: bool, checkedNodes, node, event}) | - |
 |onSelect | click the treeNode to fire | function(selectedKeys, e:{selected: bool, selectedNodes, node, event}) | - |
@@ -62,6 +66,7 @@ http://uxcore.github.io/uxcore/components/tree/
 |onDragEnter | it execs when fire the tree's dragenter event | function({event,node,expandedKeys}) | - |
 |onDragOver | it execs when fire the tree's dragover event | function({event,node}) | - |
 |onDragLeave | it execs when fire the tree's dragleave event | function({event,node}) | - |
+|onDragEnd | it execs when fire the tree's dragend event | function({event,node}) | - |
 |onDrop | it execs when fire the tree's drop event | function({event, node, dragNode, dragNodesKeys}) | - |
 
 ### TreeNode props
@@ -77,3 +82,4 @@ http://uxcore.github.io/uxcore/components/tree/
 |title | tree/subTree's title | String/node | '---' |
 |key | it's used with tree props's (default)ExpandedKeys / (default)CheckedKeys / (default)SelectedKeys. you'd better to set it, and it must be unique in the tree's all treeNodes | String | treeNode's position |
 |isLeaf | whether it's leaf node | bool | false |
+|icon | customize icon. When you pass component, whose render will receive full TreeNode props as component props | element/Function(props) | - |
