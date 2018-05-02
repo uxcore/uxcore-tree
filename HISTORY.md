@@ -2,7 +2,7 @@
 
 ---
 
-## 0.2.18
+## 0.3.0
 
 * `CHANGED` update `rc-tree` to `~1.11.0`  
 
