@@ -2,6 +2,10 @@
 
 ---
 
+## 0.3.1
+
+* `FIXED` checkbox disabled & hover style bug
+
 ## 0.3.0
 
 * `CHANGED` update `rc-tree` to `~1.11.0`  

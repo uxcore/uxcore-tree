@@ -19,7 +19,7 @@ const Demo = React.createClass({
       expandedKeys: ['0-0-0-key'],
       autoExpandParent: true,
       // checkedKeys: ['0-0-0-0-key', '0-0-1-0-key', '0-1-0-0-key'],
-      checkedKeys: ['0-0-0-key'],
+      checkedKeys: ['0-0-key'],
       checkStrictlyKeys: {},
       selectedKeys: [],
     };
