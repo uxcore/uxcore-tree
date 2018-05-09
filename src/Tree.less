@@ -6,12 +6,14 @@
  * All rights reserved.
  */
 
+ @import "../node_modules/uxcore-icon/src/Icon.less";
+ @import "../node_modules/uxcore-dropdown/src/Dropdown.less";
  @tree-assets-img: 'https://aliwork.alicdn.com/tps/TB1k_tsKpXXXXcQXFXXXXXXXXXX-130-87.png';
 
  @treePrefixCls: kuma-tree;
  .@{treePrefixCls} {
    margin: 0;
-   padding: 2px;
+   padding: 2px 20px;
    li {
      padding: 0;
      margin: 0;
@@ -19,6 +21,83 @@
      white-space: nowrap;
      outline: 0;
      line-height: 26px;
+
+     .dropdown-section {
+        width: ~"calc(100% - 16px)";
+        display: inline-block;
+        padding: 4px 4px;
+        border-radius: 3px;
+        line-height: 1;
+
+        .uxcore-icon {
+          font-size: 14px;
+          cursor: pointer;
+        }
+
+        &:hover {
+          color: @dark-alpha-2;
+          background: @normal-alpha-9;     
+          
+          .right-section {
+            visibility: visible;
+          }   
+        }
+
+       .right-section {
+         display: inline-block;
+         float: right;
+         visibility: hidden;
+       }
+
+       .kuma-dropdown {
+         .kuma-dropdown-menu {
+            min-width: 96px;
+            padding: 0;
+            margin: 2px 0 0 0;
+
+          li {
+            line-height: 1;
+          }
+         }
+       }
+     }
+
+     .draggable {
+        color: #333;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        /* Required to make elements draggable in old WebKit */
+        -khtml-user-drag: element;
+        -webkit-user-drag: element;
+      }
+      &.drag-over {
+        > .draggable {
+          background-color: #F37327;
+          color: white;
+          border: 1px #F37327 solid;
+          opacity: 0.8;
+        }
+      }
+      &.drag-over-gap-top {
+        > .draggable {
+          border-top: 1px #F37327 solid;
+          border-radius: 0;
+        }
+      }
+      &.drag-over-gap-bottom {
+        > .draggable {
+          border-bottom: 1px #F37327 solid;
+          border-radius: 0;
+        }
+      }
+      &.filter-node {
+        > .@{treePrefixCls}-node-content-wrapper {
+          color: #a60000!important;
+          font-weight: bold!important;
+        }
+      }
      ul {
        margin: 0;
        padding: 0 0 0 20px;

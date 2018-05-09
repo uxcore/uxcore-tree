@@ -1,8 +1,9 @@
 import React from 'react';
-import { gData, getRadioSelectKeys } from './util';
+import { gData, gDropDownData, getRadioSelectKeys } from './util';
 import Tree from '../src/index';
+import { Menu } from 'uxcore';
 
-const { TreeNode } = Tree;
+const { TreeNode, DropdownTreeNode } = Tree;
 
 const Demo = React.createClass({
   propTypes: {
@@ -22,7 +23,63 @@ const Demo = React.createClass({
       checkedKeys: ['0-0-0-key'],
       checkStrictlyKeys: {},
       selectedKeys: [],
+      gData,
     };
+  },
+  onDragStart(info) {
+    console.log('start', info);
+  },
+  onDragEnter(info) {
+    console.log('enter', info);
+    this.setState({
+      expandedKeys: info.expandedKeys,
+    });
+  },
+  onDrop(info) {
+    console.log('drop', info);
+    const dropKey = info.node.props.eventKey;
+    const dragKey = info.dragNode.props.eventKey;
+    const dropPos = info.node.props.pos.split('-');
+    const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1]);
+    // const dragNodesKeys = info.dragNodesKeys;
+    const loop = (data, key, callback) => {
+      data.forEach((item, index, arr) => {
+        if (item.key === key) {
+          return callback(item, index, arr);
+        }
+        if (item.children) {
+          return loop(item.children, key, callback);
+        }
+      });
+    };
+    const data = [...this.state.gData];
+    let dragObj;
+    loop(data, dragKey, (item, index, arr) => {
+      arr.splice(index, 1);
+      dragObj = item;
+    });
+    if (info.dropToGap) {
+      let ar;
+      let i;
+      loop(data, dropKey, (item, index, arr) => {
+        ar = arr;
+        i = index;
+      });
+      if (dropPosition === -1) {
+        ar.splice(i, 0, dragObj);
+      } else {
+        ar.splice(i + 1, 0, dragObj);
+      }
+    } else {
+      loop(data, dropKey, (item) => {
+        item.children = item.children || [];
+        // where to insert 示例添加到尾部，可以是随意位置
+        item.children.push(dragObj);
+      });
+    }
+    this.setState({
+      gData: data,
+    });
   },
   onExpand(expandedKeys, ...args) {
     console.log('onExpand', args);
@@ -87,10 +144,66 @@ const Demo = React.createClass({
       }
       return <TreeNode key={item.key} title={item.title} disabled={item.key === '0-2-key'} />;
     });
+    // -----
+    const menu = (<Menu>
+      <Menu.Item>
+        添加
+      </Menu.Item>
+      <Menu.Item>
+        删除
+      </Menu.Item>
+      <Menu.Item>
+        重命名
+      </Menu.Item>
+    </Menu>);
+
+    const loopDropDown = data => data.map((item) => {
+      if (item.children) {
+        // return DropdownTreeNode({ key: item.key, title: item.title, disableCheckbox: item.key === '0-0-0-key', children: loopDropDown(item.children) });
+        return (
+          <DropdownTreeNode
+            key={item.key}
+            title={item.title}
+            dropDownTitle={item.dropDownTitle}
+            onDropDownClick={e => e}
+            dropDownOverlay={menu}
+            dropDownable
+          >
+            {loopDropDown(item.children)}
+          </DropdownTreeNode>
+        );
+      }
+      return <DropdownTreeNode key={item.key} title={item.title} dropDownable dropDownTitle={item.dropDownTitle} />;
+      // return <DropdownTreeNode key={item.key} title={item.title} dropDownTitle={item.dropDownTitle} onDropDownClick={e => e} dropDownOverlay={menu} disabled={item.key === '0-2-key'} />;
+    });
     console.log('looping', loop(gData));
+    console.log(gDropDownData);
     // console.log(getRadioSelectKeys(gData, this.state.selectedKeys));
     return (
       <div style={{ padding: '0 20px' }}>
+        <h2>dropDown</h2>
+        <Tree
+          expandedKeys={this.state.expandedKeys}
+          onExpand={this.onExpand}
+          autoExpandParent={this.state.autoExpandParent}
+          onDragStart={this.onDragStart}
+          onDragEnter={this.onDragEnter}
+          onDrop={this.onDrop}
+        >
+          {loopDropDown(gDropDownData)}
+        </Tree>
+        <h2>dragable</h2>
+        <Tree
+          draggable
+          expandedKeys={this.state.expandedKeys}
+          onExpand={this.onExpand}
+          autoExpandParent={this.state.autoExpandParent}
+          onDragStart={this.onDragStart}
+          onDragEnter={this.onDragEnter}
+          onDrop={this.onDrop}
+        >
+          {loop(gData)}
+        </Tree>
         <h2>controlled</h2>
         <Tree
           checkable
