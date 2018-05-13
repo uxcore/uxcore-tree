@@ -6,8 +6,6 @@
  * All rights reserved.
  */
 
- @import "../node_modules/uxcore-icon/src/Icon.less";
- @import "../node_modules/uxcore-dropdown/src/Dropdown.less";
  @tree-assets-img: 'https://aliwork.alicdn.com/tps/TB1k_tsKpXXXXcQXFXXXXXXXXXX-130-87.png';
 
  @treePrefixCls: kuma-tree;
@@ -22,35 +20,41 @@
      outline: 0;
      line-height: 26px;
 
-     .dropdown-section {
+     .@{treePrefixCls}-dropdown-section {
         width: ~"calc(100% - 16px)";
         display: inline-block;
         padding: 4px 4px;
         border-radius: 3px;
         line-height: 1;
+        cursor: pointer;
 
-        .uxcore-icon {
+        &-icon {
           font-size: 14px;
           cursor: pointer;
+          color: @normal-alpha-4;
+
+          &:hover {
+            color: @normal-alpha-2;
+          }
         }
 
         &:hover {
           color: @dark-alpha-2;
           background: @normal-alpha-9;     
           
-          .right-section {
+          .@{treePrefixCls}-dropdown-section-right-section {
             visibility: visible;
           }   
         }
 
-       .right-section {
+       &-right-section {
          display: inline-block;
          float: right;
          visibility: hidden;
        }
 
-       .kuma-dropdown {
-         .kuma-dropdown-menu {
+       .@{treePrefixCls}-dropdown-menu {
+         & > ul {
             min-width: 96px;
             padding: 0;
             margin: 2px 0 0 0;
@@ -63,10 +67,6 @@
      }
 
      .draggable {
-        color: #333;
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
         user-select: none;
         /* Required to make elements draggable in old WebKit */
         -khtml-user-drag: element;
@@ -74,28 +74,27 @@
       }
       &.drag-over {
         > .draggable {
-          background-color: #F37327;
+          background-color: @brand-primary;
           color: white;
-          border: 1px #F37327 solid;
+          border: 1px @brand-primary solid;
           opacity: 0.8;
         }
       }
       &.drag-over-gap-top {
         > .draggable {
-          border-top: 1px #F37327 solid;
+          border-top: 1px @brand-primary solid;
           border-radius: 0;
         }
       }
       &.drag-over-gap-bottom {
         > .draggable {
-          border-bottom: 1px #F37327 solid;
+          border-bottom: 1px @brand-primary solid;
           border-radius: 0;
         }
       }
       &.filter-node {
         > .@{treePrefixCls}-node-content-wrapper {
-          color: #a60000!important;
-          font-weight: bold!important;
+          font-weight: bold;
         }
       }
      ul {
@@ -149,7 +148,7 @@
        }
        &.@{treePrefixCls}-switcher {
          &-disabled {
-           background: #fff;
+           background: @white-alpha-1;
            position: relative;
            &:after {
              content: '-';
@@ -247,11 +246,11 @@
      &.@{treePrefixCls}-checkbox-indeterminate {
        background: url("@{svg-path}/checkbox-partial-checked.svg") no-repeat;
      }
-     &-checkbox-disabled {
-       background: url("@{svg-path}/checkbox-disabled.svg") no-repeat;
-     }
      &:hover {
-       background: url("@{svg-path}/checkbox-hover.svg") no-repeat;
+      background: url("@{svg-path}/checkbox-hover.svg") no-repeat;
+    }
+     &.@{treePrefixCls}-checkbox-disabled {
+       background: url("@{svg-path}/checkbox-disabled.svg") no-repeat;
      }
    }
  }

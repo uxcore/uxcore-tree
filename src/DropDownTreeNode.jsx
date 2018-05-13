@@ -11,11 +11,7 @@ class DropdownTreeNode extends RcTree.TreeNode {
   constructor(props) {
     super(props);
 
-    this.state = {
-      dropDownSectionDom: null,
-    };
-
-    this.saveRef = this.saveRef.bind(this);
+    this.dropDownSectionDom = null;
   }
 
   // Icon + Title
@@ -75,28 +71,43 @@ class DropdownTreeNode extends RcTree.TreeNode {
     );
   };
 
-  saveRef(ele) {
-    this.setState({
-      dropDownSectionDom: ele,
-    });
-  }
-
   renderTitle() {
     const { title, onDropDownClick, dropDownTitle, dropDownOverlay, dropDownable } = this.props;
+    const { rcTree: { prefixCls } } = this.context;
 
     if (dropDownable) {
       return (
-        <span className="dropdown-section" ref={this.saveRef}>
+        <span
+          className={classNames(
+            `${prefixCls}-dropdown-section`,
+        )} ref={e => { this.dropDownSectionDom = e; }}
+        >
           <span>{title}</span>
-          <div className="right-section">
+          <div
+            className={classNames(
+              `${prefixCls}-dropdown-section-right-section`,
+            )}
+          >
             {
               !!dropDownOverlay
               ?
-                <Dropdown overlay={dropDownOverlay} getPopupContainer={() => this.state.dropDownSectionDom}>
-                  <Icon name="shezhi" />
+                <Dropdown
+                  overlayClassName={classNames(
+                    `${prefixCls}-dropdown-menu`,
+                  )} overlay={dropDownOverlay} getPopupContainer={() => this.dropDownSectionDom}
+                >
+                  <Icon
+                    className={classNames(
+                      `${prefixCls}-dropdown-section-icon`,
+                    )} name="shezhi"
+                  />
                 </Dropdown>
               :
-                <Icon name="zengjia" title={dropDownTitle} onClick={e => onDropDownClick(e)} />
+                <Icon
+                  className={classNames(
+                  `${prefixCls}-dropdown-section-icon`,
+                )} name="zengjia" title={dropDownTitle} onClick={e => onDropDownClick(e)}
+                />
             }
 
           </div>
@@ -118,7 +129,7 @@ DropdownTreeNode.propTypes = {
 
 DropdownTreeNode.defaultProps = {
   ... RcTree.TreeNode.defaultProps,
-  onDropDownClick: f => f,
+  onDropDownClick: () => {},
   dropDownable: false,
 };
 
