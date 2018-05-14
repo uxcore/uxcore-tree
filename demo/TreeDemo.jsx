@@ -173,7 +173,7 @@ const Demo = React.createClass({
           </DropdownTreeNode>
         );
       }
-      return <DropdownTreeNode key={item.key} title={item.title} dropDownable dropDownTitle={item.dropDownTitle} />;
+      return <DropdownTreeNode key={item.key} title={item.title} dropDownable dropDownTitle={item.dropDownTitle} onDropDownClick={e => e} />;
       // return <DropdownTreeNode key={item.key} title={item.title} dropDownTitle={item.dropDownTitle} onDropDownClick={e => e} dropDownOverlay={menu} disabled={item.key === '0-2-key'} />;
     });
     console.log('looping', loop(gData));
@@ -246,4 +246,3 @@ const Demo = React.createClass({
 
 
 export default Demo;
-

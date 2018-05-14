@@ -10,8 +10,6 @@ class DropdownTreeNode extends RcTree.TreeNode {
 
   constructor(props) {
     super(props);
-
-    this.dropDownSectionDom = null;
   }
 
   // Icon + Title
