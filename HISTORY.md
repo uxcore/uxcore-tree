@@ -1,6 +1,9 @@
 # History
 
 ---
+## 0.3.2
+
+* `NEW` add DropDownTreeNode component
 
 ## 0.3.1
 

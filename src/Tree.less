@@ -11,7 +11,7 @@
  @treePrefixCls: kuma-tree;
  .@{treePrefixCls} {
    margin: 0;
-   padding: 2px;
+   padding: 2px 20px;
    li {
      padding: 0;
      margin: 0;
@@ -19,6 +19,84 @@
      white-space: nowrap;
      outline: 0;
      line-height: 26px;
+
+     .@{treePrefixCls}-dropdown-section {
+        width: ~"calc(100% - 16px)";
+        display: inline-block;
+        padding: 4px 4px;
+        border-radius: 3px;
+        line-height: 1;
+        cursor: pointer;
+
+        &-icon {
+          font-size: 14px;
+          cursor: pointer;
+          color: @normal-alpha-4;
+
+          &:hover {
+            color: @normal-alpha-2;
+          }
+        }
+
+        &:hover {
+          color: @dark-alpha-2;
+          background: @normal-alpha-9;     
+          
+          .@{treePrefixCls}-dropdown-section-right-section {
+            visibility: visible;
+          }   
+        }
+
+       &-right-section {
+         display: inline-block;
+         float: right;
+         visibility: hidden;
+       }
+
+       .@{treePrefixCls}-dropdown-menu {
+         & > ul {
+            min-width: 96px;
+            padding: 0;
+            margin: 2px 0 0 0;
+
+          li {
+            line-height: 1;
+          }
+         }
+       }
+     }
+
+     .draggable {
+        user-select: none;
+        /* Required to make elements draggable in old WebKit */
+        -khtml-user-drag: element;
+        -webkit-user-drag: element;
+      }
+      &.drag-over {
+        > .draggable {
+          background-color: @brand-primary;
+          color: white;
+          border: 1px @brand-primary solid;
+          opacity: 0.8;
+        }
+      }
+      &.drag-over-gap-top {
+        > .draggable {
+          border-top: 1px @brand-primary solid;
+          border-radius: 0;
+        }
+      }
+      &.drag-over-gap-bottom {
+        > .draggable {
+          border-bottom: 1px @brand-primary solid;
+          border-radius: 0;
+        }
+      }
+      &.filter-node {
+        > .@{treePrefixCls}-node-content-wrapper {
+          font-weight: bold;
+        }
+      }
      ul {
        margin: 0;
        padding: 0 0 0 20px;
@@ -70,7 +148,7 @@
        }
        &.@{treePrefixCls}-switcher {
          &-disabled {
-           background: #fff;
+           background: @white-alpha-1;
            position: relative;
            &:after {
              content: '-';

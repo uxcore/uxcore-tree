@@ -83,3 +83,20 @@ http://uxcore.github.io/uxcore/components/tree/
 |key | it's used with tree props's (default)ExpandedKeys / (default)CheckedKeys / (default)SelectedKeys. you'd better to set it, and it must be unique in the tree's all treeNodes | String | treeNode's position |
 |isLeaf | whether it's leaf node | bool | false |
 |icon | customize icon. When you pass component, whose render will receive full TreeNode props as component props | element/Function(props) | - |
+
+### DropdownTreeNode props
+
+| name            | description                                                  | type                    | default             |
+| --------------- | ------------------------------------------------------------ | ----------------------- | ------------------- |
+| className       | additional class to treeNode                                 | String                  | ''                  |
+| disabled        | whether disabled the treeNode                                | bool                    | false               |
+| disableCheckbox | whether disable the treeNode' checkbox                       | bool                    | false               |
+| title           | tree/subTree's title                                         | String/node             | '---'               |
+| dropDownable    | whether can dropDown dropDownTreeNode.                       | Bool                    | False               |
+| dropDownTitle   | The title of the text when the icon is hovering.             | String                  | ''                  |
+| dropDownOverlay | rc-menu element                                              | rc-menu                 |                     |
+| onDropDownClick | call when mouse click "zengjia" icon                         | Function                |                     |
+| key             | it's used with tree props's (default)ExpandedKeys / (default)CheckedKeys / (default)SelectedKeys. you'd better to set it, and it must be unique in the tree's all treeNodes | String                  | treeNode's position |
+| isLeaf          | whether it's leaf node                                       | bool                    | false               |
+| icon            | customize icon. When you pass component, whose render will receive full TreeNode props as component props | element/Function(props) | -                   |
+
