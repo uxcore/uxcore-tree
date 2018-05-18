@@ -1,7 +1,7 @@
 import React from 'react';
 import { gData, gDropDownData, getRadioSelectKeys } from './util';
 import Tree from '../src/index';
-import { Menu } from 'uxcore';
+import Menu from 'uxcore-menu';
 
 const { TreeNode, DropdownTreeNode } = Tree;
 

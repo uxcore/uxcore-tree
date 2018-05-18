@@ -2,15 +2,12 @@ import React from 'react';
 import RcTree from 'rc-tree';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Dropdown, Icon } from 'uxcore';
+import Dropdown from 'uxcore-dropdown';
+import Icon from 'uxcore-icon';
 
 const LOAD_STATUS_LOADING = 1;
 
 class DropdownTreeNode extends RcTree.TreeNode {
-
-  constructor(props) {
-    super(props);
-  }
 
   // Icon + Title
   renderSelector = () => {
@@ -92,7 +89,7 @@ class DropdownTreeNode extends RcTree.TreeNode {
                 <Dropdown
                   overlayClassName={classNames(
                     `${prefixCls}-dropdown-menu`,
-                  )} overlay={dropDownOverlay} getPopupContainer={() => this.dropDownSectionDom}
+                  )} overlay={dropDownOverlay} getPopupContainer={(node) => node.parentNode}
                 >
                   <Icon
                     className={classNames(
