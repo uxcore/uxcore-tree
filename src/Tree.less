@@ -107,7 +107,7 @@
      }
      a, .@{treePrefixCls}-node-content-wrapper-normal {
        display: inline-block;
-       padding: 2px 4px;
+      //  padding: 2px 4px;
        cursor: pointer;
        text-decoration: none;
        line-height: 18px;
@@ -246,6 +246,9 @@
      }
      &.@{treePrefixCls}-checkbox-indeterminate {
        background: url("@{svg-path}/checkbox-partial-checked.svg") no-repeat;
+       &:hover {
+        background: url("@{svg-path}/checkbox-partial-checked.svg") no-repeat;
+       }
      }
      &:hover {
       background: url("@{svg-path}/checkbox-hover.svg") no-repeat;

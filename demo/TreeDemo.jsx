@@ -130,20 +130,14 @@ const Demo = React.createClass({
   },
   render() {
     console.log('render', gData);
-    const loop = data => data.map((item) => {
-      if (item.children) {
-        return (
-          <TreeNode
-            key={item.key}
-            title={item.title}
-            disableCheckbox={item.key === '0-0-0-key'}
-          >
-            {loop(item.children)}
-          </TreeNode>
-        );
-      }
-      return <TreeNode key={item.key} title={item.title} disabled={item.key === '0-2-key'} />;
-    });
+    const loop = data => {
+      return data.map((item) => {
+        if (item.children && item.children.length) {
+          return <TreeNode key={item.key} title={item.title}>{loop(item.children)}</TreeNode>;
+        }
+        return <TreeNode key={item.key} title={item.title} />;
+      });
+    };
     // -----
     const menu = (<Menu>
       <Menu.Item>
@@ -194,15 +188,15 @@ const Demo = React.createClass({
         </Tree>
         <h2>dragable</h2>
         <Tree
-          draggable
           expandedKeys={this.state.expandedKeys}
           onExpand={this.onExpand}
           autoExpandParent={this.state.autoExpandParent}
+          draggable
           onDragStart={this.onDragStart}
           onDragEnter={this.onDragEnter}
           onDrop={this.onDrop}
         >
-          {loop(gData)}
+          {loop(this.state.gData)}
         </Tree>
         <h2>controlled</h2>
         <Tree
