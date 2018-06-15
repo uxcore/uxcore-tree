@@ -3,7 +3,7 @@ import RcTree from 'rc-tree';
 import classNames from 'classnames';
 import React from 'react';
 import cssAnimation from 'css-animation';
-import DropdownTreeNode from './DropDownTreeNode';
+import ActionTreeNode from './ActionTreeNode';
 /* eslint-disable no-underscore-dangle */
 
 /* animate */
@@ -88,6 +88,6 @@ Tree.defaultProps = assign(RcTree.defaultProps, {
 });
 
 Tree.TreeNode = RcTree.TreeNode;
-Tree.DropdownTreeNode = DropdownTreeNode;
+Tree.ActionTreeNode = ActionTreeNode;
 
 export default Tree;

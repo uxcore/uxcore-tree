@@ -1,9 +1,8 @@
 import React from 'react';
 import { gData, gDropDownData, getRadioSelectKeys } from './util';
 import Tree from '../src/index';
-import Menu from 'uxcore-menu';
 
-const { TreeNode, DropdownTreeNode } = Tree;
+const { TreeNode, ActionTreeNode } = Tree;
 
 function generateTreeNodes(treeNode) {
   const arr = [];
@@ -212,7 +211,8 @@ const Demo = React.createClass({
           return <TreeNode title={item.name} key={item.key}>{loopLoading(item.children)}</TreeNode>;
         }
         return (
-          <TreeNode title={item.name} key={item.key} isLeaf={item.isLeaf}
+          <TreeNode
+            title={item.name} key={item.key} isLeaf={item.isLeaf}
             disabled={item.key === '0-0-0'}
           />
         );
@@ -220,36 +220,42 @@ const Demo = React.createClass({
     };
     const treeNodes = loopLoading(this.state.treeData);
     // -----
-    const menu = (<Menu>
-      <Menu.Item>
-        添加
-      </Menu.Item>
-      <Menu.Item>
-        删除
-      </Menu.Item>
-      <Menu.Item>
-        重命名
-      </Menu.Item>
-    </Menu>);
 
     const loopDropDown = data => data.map((item) => {
       if (item.children) {
-        // return DropdownTreeNode({ key: item.key, title: item.title, disableCheckbox: item.key === '0-0-0-key', children: loopDropDown(item.children) });
+        // return ActionTreeNode({ key: item.key, title: item.title, disableCheckbox: item.key === '0-0-0-key', children: loopDropDown(item.children) });
         return (
-          <DropdownTreeNode
+          <ActionTreeNode
             key={item.key}
             title={item.title}
-            dropDownTitle={item.dropDownTitle}
-            onDropDownClick={e => e}
-            dropDownOverlay={menu}
-            dropDownable
+            actionAble
+            actions={[{
+              text: '新增',
+              onClick: () => { console.log('lalalazzz') ;},
+              icon: 'dingding',
+            }, {
+              text: '新增',
+              onClick: () => {},
+              icon: 'fujian',
+            }, {
+              text: '新增',
+              onClick: () => {},
+              icon: 'ren',
+            }]}
           >
             {loopDropDown(item.children)}
-          </DropdownTreeNode>
+          </ActionTreeNode>
         );
       }
-      return <DropdownTreeNode key={item.key} title={item.title} dropDownable dropDownTitle={item.dropDownTitle} onDropDownClick={e => e} />;
-      // return <DropdownTreeNode key={item.key} title={item.title} dropDownTitle={item.dropDownTitle} onDropDownClick={e => e} dropDownOverlay={menu} disabled={item.key === '0-2-key'} />;
+      return (<ActionTreeNode
+        actionAble
+        key={item.key} title={item.title} actions={{
+          text: '单个',
+          onClick: () => {},
+          icon: 'weizhi',
+        }}
+      />);
+      // return <ActionTreeNode key={item.key} title={item.title} dropDownTitle={item.dropDownTitle} onDropDownClick={e => e} dropDownOverlay={menu} disabled={item.key === '0-2-key'} />;
     });
     console.log('looping', loop(gData));
     console.log(gDropDownData);
