@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { gData, gDropDownData, getRadioSelectKeys } from './util';
 import Tree from '../src/index';
 
@@ -48,18 +49,18 @@ function getNewTreeData(treeData, curKey, child, level) {
   setLeaf(treeData, curKey, level);
 }
 
-const Demo = React.createClass({
-  propTypes: {
-    multiple: React.PropTypes.bool,
-  },
-  getDefaultProps() {
-    return {
-      multiple: true,
-    };
-  },
-  getInitialState() {
-    return {
-      // expandedKeys: getFilterExpandedKeys(gData, ['0-0-0-key']),
+class Demo extends React.Component {
+  static propTypes = {
+    multiple: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    multiple: true,
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
       expandedKeys: ['0-0-0-key'],
       autoExpandParent: true,
       // checkedKeys: ['0-0-0-0-key', '0-0-1-0-key', '0-1-0-0-key'],
@@ -69,7 +70,7 @@ const Demo = React.createClass({
       gData,
       treeData: [],
     };
-  },
+  }
   componentDidMount() {
     setTimeout(() => {
       this.setState({
@@ -78,20 +79,23 @@ const Demo = React.createClass({
           { name: 'pNode 02', key: '0-1' },
           { name: 'pNode 03', key: '0-2', isLeaf: true },
         ],
-        checkedKeys: ['0-0'],
+        // checkedKeys: ['0-0'],
       });
     }, 100);
-  },
-  onDragStart(info) {
+  }
+
+  onDragStar = (info) => {
     console.log('start', info);
-  },
-  onDragEnter(info) {
+  }
+
+  onDragEnter = (info) => {
     console.log('enter', info);
     this.setState({
       expandedKeys: info.expandedKeys,
     });
-  },
-  onDrop(info) {
+  }
+
+  onDrop = (info) => {
     console.log('drop', info);
     const dropKey = info.node.props.eventKey;
     const dragKey = info.dragNode.props.eventKey;
@@ -136,8 +140,9 @@ const Demo = React.createClass({
     this.setState({
       gData: data,
     });
-  },
-  onExpand(expandedKeys, ...args) {
+  }
+
+  onExpand = (expandedKeys, ...args) => {
     console.log('onExpand', args);
     // if not set autoExpandParent to false, if children expanded, parent can not collapse.
     // or, you can remove all expanded chilren keys.
@@ -145,14 +150,16 @@ const Demo = React.createClass({
       expandedKeys,
       autoExpandParent: false,
     });
-  },
-  onCheck(checkedKeys) {
+  }
+
+  onCheck = (checkedKeys) => {
     console.log('onCheck', checkedKeys);
     this.setState({
       checkedKeys,
     });
-  },
-  onLoadData(treeNode) {
+  }
+
+  onLoadData = (treeNode) => {
     console.log('load data...');
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -162,8 +169,9 @@ const Demo = React.createClass({
         resolve();
       }, 500);
     });
-  },
-  onCheckStrictly(checkedKeys, ...args /* extra */) {
+  }
+
+  onCheckStrictly = (checkedKeys, ...args /* extra */) => {
     console.log('onCheckStrictly');
     console.log(args);
     // const { checkedNodesPositions } = extra;
@@ -178,14 +186,16 @@ const Demo = React.createClass({
       checkStrictlyKeys: cks,
       // checkStrictlyKeys: checkedKeys,
     });
-  },
-  onSelect(selectedKeys, info) {
+  }
+
+  onSelect = (selectedKeys, info) => {
     console.log('onSelect', selectedKeys, info);
     this.setState({
       selectedKeys,
     });
-  },
-  onRbSelect(selectedKeys, info) {
+  }
+
+  onRbSelect = (selectedKeys, info) => {
     console.log('onRbSelect');
     let newSelectedKeys = selectedKeys;
     if (info.selected) {
@@ -194,7 +204,8 @@ const Demo = React.createClass({
     this.setState({
       selectedKeys: newSelectedKeys,
     });
-  },
+  }
+
   render() {
     console.log('render', gData);
     const loop = data => {
@@ -231,7 +242,7 @@ const Demo = React.createClass({
             actionAble
             actions={[{
               text: '新增',
-              onClick: () => { console.log('lalalazzz') ;},
+              onClick: () => { console.log('lalalazzz'); },
               icon: 'dingding',
             }, {
               text: '新增',
@@ -330,8 +341,8 @@ const Demo = React.createClass({
           {loop(gData)}
         </Tree>
       </div>);
-  },
-});
+  }
+}
 
 
 export default Demo;

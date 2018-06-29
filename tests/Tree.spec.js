@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import createClass from 'create-react-class';
 import cssAnimation from 'css-animation';
 // import Enzyme, { mount, shallow } from 'enzyme';
-// import Adapter from 'enzyme-adapter-react-15';
+// import Adapter from 'enzyme-adapter-react-16';
 import Tree from '../src';
 
 const { TreeNode } = Tree;

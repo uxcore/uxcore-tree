@@ -1,9 +1,13 @@
 # History
 
 ---
+## 0.3.5
+
+* `CHANGED` adapt react@16.x
+
 ## 0.3.2
 
-* `NEW` add DropDownTreeNode component
+* `NEW` add ActionTreeNode component
 
 ## 0.3.1
 
