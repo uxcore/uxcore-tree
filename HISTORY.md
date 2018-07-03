@@ -1,6 +1,11 @@
 # History
 
 ---
+
+## 0.3.6
+
+* `CHANGED` update `uxcore-dropdown` to `^0.5.0`  
+
 ## 0.3.5
 
 * `CHANGED` adapt react@16.x
