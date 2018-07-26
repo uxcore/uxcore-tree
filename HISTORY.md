@@ -2,7 +2,7 @@
 
 ---
 
-## 0.3.6
+## 0.4.0
 
 * `CHANGED` update `uxcore-dropdown` to `^0.5.0`  
 
