@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { gData, gDropDownData, getRadioSelectKeys } from './util';
 import Tree from '../src/index';
+import '../style';
+import 'kuma-base/core.less';
 
 const { TreeNode, ActionTreeNode } = Tree;
 
@@ -18,8 +20,8 @@ function setLeaf(treeData, curKey, level) {
   const loopLeaf = (data, lev) => {
     const l = lev - 1;
     data.forEach((item) => {
-      if ((item.key.length > curKey.length) ? item.key.indexOf(curKey) !== 0 :
-        curKey.indexOf(item.key) !== 0) {
+      if ((item.key.length > curKey.length) ? item.key.indexOf(curKey) !== 0
+        : curKey.indexOf(item.key) !== 0) {
         return;
       }
       if (item.children) {
@@ -71,6 +73,7 @@ class Demo extends React.Component {
       treeData: [],
     };
   }
+
   componentDidMount() {
     setTimeout(() => {
       this.setState({
@@ -208,27 +211,33 @@ class Demo extends React.Component {
 
   render() {
     console.log('render', gData);
-    const loop = data => {
-      return data.map((item) => {
-        if (item.children && item.children.length) {
-          return <TreeNode key={item.key} title={item.title}>{loop(item.children)}</TreeNode>;
-        }
-        return <TreeNode key={item.key} title={item.title} />;
-      });
-    };
-    const loopLoading = (data) => {
-      return data.map((item) => {
-        if (item.children) {
-          return <TreeNode title={item.name} key={item.key}>{loopLoading(item.children)}</TreeNode>;
-        }
+    const loop = data => data.map((item) => {
+      if (item.children && item.children.length) {
         return (
-          <TreeNode
-            title={item.name} key={item.key} isLeaf={item.isLeaf}
-            disabled={item.key === '0-0-0'}
-          />
+          <TreeNode key={item.key} title={item.title}>
+            {loop(item.children)}
+          </TreeNode>
         );
-      });
-    };
+      }
+      return <TreeNode key={item.key} title={item.title} />;
+    });
+    const loopLoading = data => data.map((item) => {
+      if (item.children) {
+        return (
+          <TreeNode title={item.name} key={item.key}>
+            {loopLoading(item.children)}
+          </TreeNode>
+        );
+      }
+      return (
+        <TreeNode
+          title={item.name}
+          key={item.key}
+          isLeaf={item.isLeaf}
+          disabled={item.key === '0-0-0'}
+        />
+      );
+    });
     const treeNodes = loopLoading(this.state.treeData);
     // -----
 
@@ -246,11 +255,11 @@ class Demo extends React.Component {
               icon: 'dingding',
             }, {
               text: '新增',
-              onClick: () => {},
+              onClick: () => { },
               icon: 'fujian',
             }, {
               text: '新增',
-              onClick: () => {},
+              onClick: () => { },
               icon: 'ren',
             }]}
           >
@@ -258,14 +267,18 @@ class Demo extends React.Component {
           </ActionTreeNode>
         );
       }
-      return (<ActionTreeNode
-        actionAble
-        key={item.key} title={item.title} actions={{
-          text: '单个',
-          onClick: () => {},
-          icon: 'weizhi',
-        }}
-      />);
+      return (
+        <ActionTreeNode
+          actionAble
+          key={item.key}
+          title={item.title}
+          actions={{
+            text: '单个',
+            onClick: () => { },
+            icon: 'weizhi',
+          }}
+        />
+      );
       // return <ActionTreeNode key={item.key} title={item.title} dropDownTitle={item.dropDownTitle} onDropDownClick={e => e} dropDownOverlay={menu} disabled={item.key === '0-2-key'} />;
     });
     console.log('looping', loop(gData));
@@ -273,7 +286,9 @@ class Demo extends React.Component {
     // console.log(getRadioSelectKeys(gData, this.state.selectedKeys));
     return (
       <div style={{ padding: '0 20px' }}>
-        <h2>dropDown</h2>
+        <h2>
+          dropDown
+        </h2>
         <Tree
           expandedKeys={this.state.expandedKeys}
           onExpand={this.onExpand}
@@ -284,7 +299,9 @@ class Demo extends React.Component {
         >
           {loopDropDown(gDropDownData)}
         </Tree>
-        <h2>dragable</h2>
+        <h2>
+          dragable
+        </h2>
         <Tree
           expandedKeys={this.state.expandedKeys}
           onExpand={this.onExpand}
@@ -296,7 +313,9 @@ class Demo extends React.Component {
         >
           {loop(this.state.gData)}
         </Tree>
-        <h2>controlled</h2>
+        <h2>
+          controlled
+        </h2>
         <Tree
           checkable
           multiple={this.props.multiple}
@@ -310,15 +329,21 @@ class Demo extends React.Component {
         >
           {loop(gData)}
         </Tree>
-        <h2>Dynamic Render</h2>
+        <h2>
+          Dynamic Render
+        </h2>
         <Tree
           onSelect={this.onSelect}
-          checkable onCheck={this.onCheck} checkedKeys={this.state.checkedKeys}
+          checkable
+          onCheck={this.onCheck}
+          checkedKeys={this.state.checkedKeys}
           loadData={this.onLoadData}
         >
           {treeNodes}
         </Tree>
-        <h2>checkStrictly</h2>
+        <h2>
+          checkStrictly
+        </h2>
         <Tree
           checkable
           multiple={this.props.multiple}
@@ -331,7 +356,9 @@ class Demo extends React.Component {
         >
           {loop(gData)}
         </Tree>
-        <h2>{'radio\'s behavior select (in the same level)'}</h2>
+        <h2>
+          {'radio\'s behavior select (in the same level)'}
+        </h2>
         <Tree
           multiple
           defaultExpandAll

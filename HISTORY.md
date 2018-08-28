@@ -2,6 +2,10 @@
 
 ---
 
+## 0.4.2
+
+* `NEW` support js style export
+
 ## 0.4.0
 
 * `CHANGED` update `uxcore-dropdown` to `^0.5.0`  
