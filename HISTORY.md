@@ -2,6 +2,10 @@
 
 ---
 
+## 0.4.3
+
+* `CHANGED` style adjustment
+
 ## 0.4.2
 
 * `NEW` support js style export

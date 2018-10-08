@@ -219,7 +219,7 @@ class Demo extends React.Component {
           </TreeNode>
         );
       }
-      return <TreeNode key={item.key} title={item.title} />;
+      return <TreeNode key={item.key} title={item.title} disabled={item.key === '0-0-0-1-key'} />;
     });
     const loopLoading = data => data.map((item) => {
       if (item.children) {
@@ -360,10 +360,11 @@ class Demo extends React.Component {
           {'radio\'s behavior select (in the same level)'}
         </h2>
         <Tree
-          multiple
+          multiple={false}
           defaultExpandAll
           onSelect={this.onRbSelect}
           selectedKeys={getRadioSelectKeys(gData, this.state.selectedKeys)}
+          selectedKeys={['0-0-0-0-key']}
         >
           {loop(gData)}
         </Tree>
