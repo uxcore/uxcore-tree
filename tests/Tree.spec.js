@@ -1,26 +1,35 @@
+/* eslint-disable react/jsx-filename-extension  */
+/* eslint-disable react/no-string-refs  */
 import expect from 'expect.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import createClass from 'create-react-class';
-import cssAnimation from 'css-animation';
-// import Enzyme, { mount, shallow } from 'enzyme';
-// import Adapter from 'enzyme-adapter-react-16';
+import Enzyme, { mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { gData } from '../demo/util';
 import Tree from '../src';
 
-const { TreeNode } = Tree;
-import { gData, getRadioSelectKeys } from '../demo/util';
+Enzyme.configure({ adapter: new Adapter() });
 
-const loop = (data) => data.map((item) => {
+const { TreeNode, ActionTreeNode } = Tree;
+
+const loop = data => data.map((item) => {
   if (item.children) {
     return (
-        <TreeNode
-          key={item.key}
-          title={item.title}
-          disableCheckbox={item.key === '0-2-key'}
-        >
-          {loop(item.children)}
-        </TreeNode>
-      );
+      <ActionTreeNode
+        key={item.key}
+        title={item.title}
+        disableCheckbox={item.key === '0-2-key'}
+        actionAble
+        actions={[{
+          text: 'Action1',
+          onClick: () => {},
+          icon: '',
+        }]}
+      >
+        {loop(item.children)}
+      </ActionTreeNode>
+    );
   }
   return <TreeNode key={item.key} title={item.title} disabled={item.key === '0-2-key'} />;
 });
@@ -79,10 +88,7 @@ describe('Tree', () => {
     expect(formFieldNode.tree.getElementsByClassName('kuma-tree-iconEle')).to.have.length(3);
     done();
   });
-/*
-        onCheck={this.onCheck}
-        checkedKeys={this.state.checkedKeys}
-*/
+
   it('should default checked ', (done) => {
     const Demo = createClass({
       render() {
@@ -97,15 +103,14 @@ describe('Tree', () => {
     done();
   });
 
-
   it('onSelect', (done) => {
     const Demo = createClass({
       getInitialState() {
         return {
-          selectedKeys: [''],
+          selectedKeys: [],
         };
       },
-      onSelect(selectedKeys, info) {
+      onSelect(selectedKeys) {
         this.setState({
           selectedKeys,
         });
@@ -122,11 +127,12 @@ describe('Tree', () => {
     expect(formFieldNode.tree.getElementsByClassName('kuma-tree-node-selected')).to.have.length(1);
     done();
   });
+
   it('onCheck', (done) => {
     const Demo = createClass({
       getInitialState() {
         return {
-          checkedKeys: [''],
+          checkedKeys: [],
         };
       },
       onCheck(checkedKeys) {
@@ -173,6 +179,54 @@ describe('Tree', () => {
     instance = ReactDOM.render(<Demo />, div);
     const formFieldNode = instance.refs.tree;
     expect(formFieldNode.tree.getElementsByClassName('kuma-tree-checkbox-checked')).to.have.length(1);
+    done();
+  });
+
+  it('should response to click on action icon', (done) => {
+    const Demo = createClass({
+      render() {
+        return (<Tree ref="tree" checkable>
+          <ActionTreeNode
+            key="0-0"
+            title="0-0-title"
+            actionAble
+            actions={[{
+              text: 'Action1',
+              onClick: () => {},
+              icon: '',
+            }]}
+          />
+        </Tree>);
+      },
+    });
+    const wrapper = mount(<Demo />);
+    wrapper.find('.uxcore-icon').simulate('click');
+    done();
+  });
+
+  it('should response to click on single action', (done) => {
+    let ckvalue = 0;
+    const Demo = createClass({
+      render() {
+        return (<Tree ref="tree" checkable>
+          <ActionTreeNode
+            key="0-0"
+            title="0-0-title"
+            actionAble
+            actions={{
+              text: 'Action1',
+              onClick: () => {
+                ckvalue = 1;
+              },
+              icon: 'weizhi',
+            }}
+          />
+        </Tree>);
+      },
+    });
+    const wrapper = mount(<Demo />);
+    wrapper.find('.uxcore-icon').simulate('click');
+    expect(ckvalue).to.be.equal(1);
     done();
   });
 });

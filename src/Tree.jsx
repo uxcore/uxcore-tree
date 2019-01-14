@@ -4,9 +4,8 @@ import classNames from 'classnames';
 import React from 'react';
 import cssAnimation from 'css-animation';
 import ActionTreeNode from './ActionTreeNode';
-/* eslint-disable no-underscore-dangle */
 
-/* animate */
+/* eslint-disable no-param-reassign */
 const animate = (node, show, done) => {
   let height;
   return cssAnimation(node, 'kuma-tree-collapse', {

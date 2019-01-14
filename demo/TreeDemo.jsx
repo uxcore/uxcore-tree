@@ -87,7 +87,7 @@ class Demo extends React.Component {
     }, 100);
   }
 
-  onDragStar = (info) => {
+  onDragStart = (info) => {
     console.log('start', info);
   }
 
@@ -98,8 +98,15 @@ class Demo extends React.Component {
     });
   }
 
-  onDrop = (info) => {
-    console.log('drop', info);
+  onDragEnd = (info) => {
+    console.log('end', info);
+    this.setState({
+      expandedKeys: info.expandedKeys,
+    });
+  }
+
+  onDrop = (info, ...args) => {
+    console.log('drop', info, args);
     const dropKey = info.node.props.eventKey;
     const dragKey = info.dragNode.props.eventKey;
     const dropPos = info.node.props.pos.split('-');
@@ -210,16 +217,16 @@ class Demo extends React.Component {
   }
 
   render() {
-    console.log('render', gData);
+    console.log('render dragOverGapBottom', gData);
     const loop = data => data.map((item) => {
       if (item.children && item.children.length) {
         return (
-          <TreeNode key={item.key} title={item.title}>
+          <TreeNode key={item.key} title={item.title} dragOverGapBottom>
             {loop(item.children)}
           </TreeNode>
         );
       }
-      return <TreeNode key={item.key} title={item.title} disabled={item.key === '0-0-0-1-key'} />;
+      return <TreeNode key={item.key} title={`${item.title} Bottom`} disabled={item.key === '0-0-0-1-key'} dragOverGapBottom={true} />;
     });
     const loopLoading = data => data.map((item) => {
       if (item.children) {
@@ -243,15 +250,15 @@ class Demo extends React.Component {
 
     const loopDropDown = data => data.map((item) => {
       if (item.children) {
-        // return ActionTreeNode({ key: item.key, title: item.title, disableCheckbox: item.key === '0-0-0-key', children: loopDropDown(item.children) });
         return (
           <ActionTreeNode
             key={item.key}
             title={item.title}
             actionAble
+            selectable
             actions={[{
               text: '新增',
-              onClick: () => { console.log('lalalazzz'); },
+              onClick: () => { console.log('多个 Action 回调'); },
               icon: 'dingding',
             }, {
               text: '新增',
@@ -274,28 +281,27 @@ class Demo extends React.Component {
           title={item.title}
           actions={{
             text: '单个',
-            onClick: () => { },
+            onClick: () => { console.log('单个 Action 点击'); },
             icon: 'weizhi',
           }}
         />
       );
-      // return <ActionTreeNode key={item.key} title={item.title} dropDownTitle={item.dropDownTitle} onDropDownClick={e => e} dropDownOverlay={menu} disabled={item.key === '0-2-key'} />;
     });
-    console.log('looping', loop(gData));
-    console.log(gDropDownData);
-    // console.log(getRadioSelectKeys(gData, this.state.selectedKeys));
+
     return (
       <div style={{ padding: '0 20px' }}>
         <h2>
           dropDown
         </h2>
         <Tree
+          selectable
           expandedKeys={this.state.expandedKeys}
           onExpand={this.onExpand}
           autoExpandParent={this.state.autoExpandParent}
           onDragStart={this.onDragStart}
           onDragEnter={this.onDragEnter}
           onDrop={this.onDrop}
+          onSelect={() => { console.log('onSelect 回调'); }}
         >
           {loopDropDown(gDropDownData)}
         </Tree>
@@ -308,6 +314,7 @@ class Demo extends React.Component {
           autoExpandParent={this.state.autoExpandParent}
           draggable
           onDragStart={this.onDragStart}
+          onDragEnd={this.onDragEnd}
           onDragEnter={this.onDragEnter}
           onDrop={this.onDrop}
         >
@@ -359,6 +366,15 @@ class Demo extends React.Component {
         <h2>
           {'radio\'s behavior select (in the same level)'}
         </h2>
+        <Tree
+          multiple={false}
+          defaultExpandAll
+          onSelect={this.onRbSelect}
+          selectedKeys={getRadioSelectKeys(gData, this.state.selectedKeys)}
+          selectedKeys={['0-0-0-0-key']}
+        >
+          {loop(gData)}
+        </Tree>
         <Tree
           multiple={false}
           defaultExpandAll
