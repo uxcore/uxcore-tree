@@ -2,6 +2,10 @@
 
 ---
 
+## 0.4.4
+
+* `CHANGED` for ActionTreeNode, prevent click event to propagation on action item so it won't trigger selectable event on tree node
+
 ## 0.4.3
 
 * `CHANGED` style adjustment

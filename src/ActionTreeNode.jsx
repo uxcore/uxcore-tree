@@ -9,7 +9,6 @@ import Menu from 'uxcore-menu';
 const LOAD_STATUS_LOADING = 1;
 
 class ActionTreeNode extends RcTree.TreeNode {
-
   // Icon + Title
   renderSelector = () => {
     const { loadStatus, dragNodeHighlight } = this.state;
@@ -51,7 +50,7 @@ class ActionTreeNode extends RcTree.TreeNode {
           `${wrapClass}`,
           this.getNodeState() ? `${wrapClass}-${this.getNodeState() || 'normal'}` : '',
           (!disabled && (selected || dragNodeHighlight)) && `${prefixCls}-node-selected`,
-          (!disabled && draggable) && 'draggable'
+          (!disabled && draggable) && 'draggable',
         )}
         draggable={(!disabled && draggable) || undefined}
         aria-grabbed={(!disabled && draggable) || undefined}
@@ -62,7 +61,7 @@ class ActionTreeNode extends RcTree.TreeNode {
         onClick={this.onSelectorClick}
         onDragStart={this.onDragStart}
       >
-          {$icon}{$title}
+        {$icon}{$title}
       </span>
     );
   };
@@ -74,43 +73,54 @@ class ActionTreeNode extends RcTree.TreeNode {
     if (actionAble) {
       let renderActionContent = '';
 
+      // bad smell: while call the onClick, haven't passed event as the first param at the
+      // beginning, and now for the compatibility, we can't change the order
       if (Array.isArray(actions)) {
-        let menuContent = [];
-
+        const menuContent = [];
         actions.forEach((value, index) => {
-          if (value.icon) {
-            menuContent.push(<Menu.Item key={index}>
-              <div onClick={() => value.onClick(value, index)}>
-                {value.icon ?
-                  <Icon name={value.icon} />
-                : ''}
-                {value.text}
-              </div>
-            </Menu.Item>);
-          } else {
-            menuContent.push(<Menu.Item key={value + index}><div onClick={() => value.onClick(value, index)}>{value.text}</div></Menu.Item>);
-          }
+          menuContent.push(<Menu.Item key={`${index + 1}`}>
+            <div onClick={(e) => {
+              e.stopPropagation();
+              value.onClick(value, index, e);
+            }}
+            >
+              {value.icon ? <Icon usei name={value.icon} /> : null}
+              {value.text}
+            </div>
+          </Menu.Item>);
         });
 
         renderActionContent = (<Dropdown
           overlayClassName={classNames(
             `${prefixCls}-dropdown-menu`,
-          )} overlay={<Menu>{menuContent}</Menu>} getPopupContainer={(node) => node.parentNode}
+          )}
+          overlay={<Menu>{menuContent}</Menu>}
+          getPopupContainer={node => node.parentNode}
         >
           <Icon
+            usei
             className={classNames(
               `${prefixCls}-dropdown-section-icon`,
-            )} name="shezhi"
+            )}
+            name="shezhi"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
           />
         </Dropdown>);
-      } else {
-        if (actions.icon) {
-          renderActionContent = (<Icon
-            className={classNames(
-              `${prefixCls}-dropdown-section-icon`,
-            )} name={actions.icon} title={actions.text} onClick={e => actions.onClick(e)}
-          />);
-        }
+      } else if (actions.icon) {
+        renderActionContent = (<Icon
+          usei
+          className={classNames(
+            `${prefixCls}-dropdown-section-icon`,
+          )}
+          name={actions.icon}
+          title={actions.text}
+          onClick={(e) => {
+            e.stopPropagation();
+            actions.onClick(e);
+          }}
+        />);
       }
 
       return (
@@ -136,16 +146,13 @@ class ActionTreeNode extends RcTree.TreeNode {
 }
 
 ActionTreeNode.propTypes = {
-  ... RcTree.TreeNode.propTypes,
-  onDropDownClick: PropTypes.func,
-  dropDownOverlay: PropTypes.node,
-  dropDownTitle: PropTypes.string,
+  ...RcTree.TreeNode.propTypes,
   actionAble: PropTypes.bool,
   actions: PropTypes.any,
 };
 
 ActionTreeNode.defaultProps = {
-  ... RcTree.TreeNode.defaultProps,
+  ...RcTree.TreeNode.defaultProps,
   actionAble: false,
   actions: {
     text: '',
