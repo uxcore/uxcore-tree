@@ -67,7 +67,7 @@ class ActionTreeNode extends RcTree.TreeNode {
   };
 
   renderTitle() {
-    const { title, actionAble, actions } = this.props;
+    const { title, actionAble, actionIcon, actions } = this.props;
     const { rcTree: { prefixCls } } = this.context;
 
     if (actionAble) {
@@ -102,7 +102,7 @@ class ActionTreeNode extends RcTree.TreeNode {
             className={classNames(
               `${prefixCls}-dropdown-section-icon`,
             )}
-            name="shezhi"
+            name={actionIcon}
             onClick={(e) => {
               e.stopPropagation();
             }}
@@ -148,12 +148,14 @@ class ActionTreeNode extends RcTree.TreeNode {
 ActionTreeNode.propTypes = {
   ...RcTree.TreeNode.propTypes,
   actionAble: PropTypes.bool,
+  actionIcon: PropTypes.string,
   actions: PropTypes.any,
 };
 
 ActionTreeNode.defaultProps = {
   ...RcTree.TreeNode.defaultProps,
   actionAble: false,
+  actionIcon: 'shezhi',
   actions: {
     text: '',
     onClick: () => {},
