@@ -9,6 +9,8 @@ import Menu from 'uxcore-menu';
 const LOAD_STATUS_LOADING = 1;
 
 class ActionTreeNode extends RcTree.TreeNode {
+  actionClickBlocker = false;
+
   // Icon + Title
   renderSelector = () => {
     const { loadStatus, dragNodeHighlight } = this.state;
@@ -54,11 +56,24 @@ class ActionTreeNode extends RcTree.TreeNode {
         )}
         draggable={(!disabled && draggable) || undefined}
         aria-grabbed={(!disabled && draggable) || undefined}
-
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onContextMenu={this.onContextMenu}
-        onClick={this.onSelectorClick}
+        onClick={(e) => {
+          // the event stop propagation will fial in popover under react@15 or smaller, so try to
+          // block it by logic code
+          if (e.target && e.target.closest) {
+            this.actionClickBlocker = false;
+            if (e.target.closest('.uxcore-tree-node-actions-blocker')) {
+              return;
+            }
+          } else if (this.actionClickBlocker) {
+            this.actionClickBlocker = false;
+            return;
+          }
+
+          this.onSelectorClick(e);
+        }}
         onDragStart={this.onDragStart}
       >
         {$icon}{$title}
@@ -81,10 +96,12 @@ class ActionTreeNode extends RcTree.TreeNode {
           menuContent.push(<Menu.Item key={`${index + 1}`}>
             <div onClick={(e) => {
               e.stopPropagation();
+              this.actionClickBlocker = true;
+
               value.onClick(value, index, e);
             }}
             >
-              {value.icon ? <Icon usei name={value.icon} /> : null}
+              {value.icon ? <Icon usei name={value.icon} className="kuma-tree-icon-valign" /> : null}
               {value.text}
             </div>
           </Menu.Item>);
@@ -93,6 +110,7 @@ class ActionTreeNode extends RcTree.TreeNode {
         renderActionContent = (<Dropdown
           overlayClassName={classNames(
             `${prefixCls}-dropdown-menu`,
+            'uxcore-tree-node-actions-blocker',
           )}
           overlay={<Menu>{menuContent}</Menu>}
           getPopupContainer={node => node.parentNode}
@@ -155,7 +173,7 @@ ActionTreeNode.propTypes = {
 ActionTreeNode.defaultProps = {
   ...RcTree.TreeNode.defaultProps,
   actionAble: false,
-  actionIcon: 'shezhi',
+  actionIcon: 'more-dot',
   actions: {
     text: '',
     onClick: () => {},

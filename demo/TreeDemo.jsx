@@ -297,7 +297,7 @@ class Demo extends React.Component {
           selectable
           expandedKeys={this.state.expandedKeys}
           onExpand={this.onExpand}
-          autoExpandParent={this.state.autoExpandParent}
+          autoExpandParent
           onDragStart={this.onDragStart}
           onDragEnter={this.onDragEnter}
           onDrop={this.onDrop}
@@ -305,6 +305,11 @@ class Demo extends React.Component {
         >
           {loopDropDown(gDropDownData)}
         </Tree>
+        <button onClick={() => {
+          this.setState({
+            expandedKeys: ['0-0-1-1-key'],
+          });
+        }}>手动展开</button>
         <h2>
           dragable
         </h2>
