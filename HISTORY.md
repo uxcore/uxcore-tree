@@ -2,6 +2,11 @@
 
 ---
 
+## 0.4.5
+
+* `FIXED` for ActionTreeNode, fix the event stop propagation problem under react@15 and smaller
+* `CHANGED` default actions ICON changed to more-dot
+
 ## 0.4.4
 
 * `CHANGED` for ActionTreeNode, prevent click event to propagation on action item so it won't trigger selectable event on tree node
