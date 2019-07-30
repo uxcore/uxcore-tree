@@ -302,6 +302,7 @@ class Demo extends React.Component {
           onDragEnter={this.onDragEnter}
           onDrop={this.onDrop}
           onSelect={() => { console.log('onSelect 回调'); }}
+          onDoubleClick={(e, _this) => console.log('onDoubleClick', e, _this)}
         >
           {loopDropDown(gDropDownData)}
         </Tree>

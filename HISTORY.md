@@ -2,6 +2,10 @@
 
 ---
 
+## 0.4.6
+
+* `FIXED` for ActionTreeNode, fix onDoubleClick event. Tree onDoubleClick event.
+
 ## 0.4.5
 
 * `FIXED` for ActionTreeNode, fix the event stop propagation problem under react@15 and smaller

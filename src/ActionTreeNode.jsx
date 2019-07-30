@@ -15,7 +15,7 @@ class ActionTreeNode extends RcTree.TreeNode {
   renderSelector = () => {
     const { loadStatus, dragNodeHighlight } = this.state;
     const { title, selected, icon } = this.props;
-    const { rcTree: { prefixCls, showIcon, icon: treeIcon, draggable, loadData } } = this.context;
+    const { rcTree: { prefixCls, showIcon, icon: treeIcon, draggable, loadData, onNodeDoubleClick } } = this.context;
     const disabled = this.isDisabled();
 
     const wrapClass = `${prefixCls}-node-content-wrapper`;
@@ -75,6 +75,7 @@ class ActionTreeNode extends RcTree.TreeNode {
           this.onSelectorClick(e);
         }}
         onDragStart={this.onDragStart}
+        onDoubleClick={e => onNodeDoubleClick(e, this)}
       >
         {$icon}{$title}
       </span>
